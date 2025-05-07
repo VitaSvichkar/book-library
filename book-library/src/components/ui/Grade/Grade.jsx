@@ -1,4 +1,4 @@
-import c from './card.module.css';
+import c from '../ui.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';

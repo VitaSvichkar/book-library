@@ -1,0 +1,141 @@
+/* BADGE */
+
+.badge {
+  position: relative;
+  padding: 0px 10px 0px 20px;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.13);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.badge::before {
+  content: '●';
+  color: rgb(169, 168, 168);
+  font-size: 19px;
+  position: absolute;
+  left: 5px;
+  top: -3px;
+}
+
+.badge.reading {
+  background-color: #224c6b;
+}
+
+.badge.reading::before {
+  content: '●';
+  color: rgb(28, 121, 155);
+}
+
+.badge.completed {
+  background-color: #316946;
+}
+
+.badge.completed::before {
+  content: '●';
+  color: rgb(34, 165, 78);
+}
+
+/* PROGRESS BAR */
+
+.wrapLabel {
+  height: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.labelProgress {
+  position: relative;
+  background-color: #254c2f;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+}
+
+.labelProgress div {
+  background-color: #509573;
+  position: absolute;
+  height: 100%;
+  border-radius: 4px;
+}
+
+input[type='range'] {
+  background-color: #fff;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  background: transparent;
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  width: 2px;
+  height: 5px;
+  background: #509573;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 2px;
+  height: 5px;
+  background: #509573;
+  cursor: pointer;
+}
+
+.wrapStar,
+.wrapLabel,
+.author,
+.category {
+  padding: 5px;
+  border-radius: 4px;
+  transition: 0.2s ease all;
+}
+
+.wrapStar:hover,
+.wrapLabel:hover,
+.author:hover,
+.category:hover {
+  background-color: #5f606441;
+}
+
+/* GRADE */
+
+.wrapStar div {
+  display: inline-block;
+  background-color: #6e6f7a41;
+  border-radius: 4px;
+  padding: 0 5px;
+}
+
+.wrapStar span {
+  color: rgb(117, 117, 117);
+  display: inline-block;
+  padding-top: 1px;
+}
+
+.wrapStar .starIco {
+  color: rgb(239, 202, 82);
+}
+
+/* BTN */
+
+.btnFinished {
+  /* border: 1px solid rgb(73, 73, 73); */
+  background-color: rgb(25, 84, 92);
+  padding: 5px;
+  border-radius: 4px;
+}
+
+/* .btnMargin {
+  margin-left: 5px;
+} */
+
+.btnFinished:hover {
+  border: 1px solid rgb(80, 209, 119);
+}

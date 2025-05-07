@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import c from './card.module.css';
+import c from '../ui.module.css';
 
 export function ProgressBar({ pages }) {
   const [barState, setBarState] = useState({ width: 0, progress: 0 });

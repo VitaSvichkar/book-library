@@ -11,28 +11,6 @@
   cursor: pointer;
 }
 
-.badge {
-  /* display: block; */
-  position: relative;
-  padding: 0px 10px 0px 20px;
-  border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.13);
-  display: inline-block;
-  vertical-align: middle;
-  /* display: flex; */
-  /* align-items: center; */
-  /* line-height: 1.1; */
-}
-
-.badge::before {
-  content: '●';
-  color: rgb(169, 168, 168);
-  font-size: 19px;
-  position: absolute;
-  left: 5px;
-  top: -3px;
-}
-
 .cardInfo {
   border: 1px solid rgb(50, 50, 50);
   background-color: #2b2b2d;
@@ -91,60 +69,6 @@
   padding: 2px 5px;
 }
 
-.wrapLabel {
-  height: 25px;
-  /* width: 100px; */
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.labelProgress {
-  position: relative;
-  background-color: #254c2f;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  overflow: hidden;
-}
-
-.labelProgress div {
-  background-color: #509573;
-  position: absolute;
-  height: 100%;
-  border-radius: 4px;
-}
-
-input[type='range'] {
-  background-color: #fff;
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  background: transparent;
-  outline: none;
-  -webkit-appearance: none;
-  cursor: pointer;
-  /* border-radius: 1px; */
-}
-
-input[type='range']::-webkit-slider-thumb {
-  width: 2px;
-  height: 5px;
-  background: #509573;
-  cursor: pointer;
-  -webkit-appearance: none;
-}
-
-input[type='range']::-moz-range-thumb {
-  width: 2px;
-  height: 5px;
-  background: #509573;
-  cursor: pointer;
-}
-
-.wrapStar,
-.wrapLabel,
 .author,
 .category {
   padding: 5px;
@@ -152,88 +76,13 @@ input[type='range']::-moz-range-thumb {
   transition: 0.2s ease all;
 }
 
-.wrapStar:hover,
-.wrapLabel:hover,
 .author:hover,
 .category:hover {
   background-color: #5f606441;
 }
 
-.wrapStar div {
-  display: inline-block;
-  background-color: #6e6f7a41;
-  border-radius: 4px;
-
-  padding: 0 5px;
-}
-
-.wrapStar span {
-  color: rgb(117, 117, 117);
-  display: inline-block;
-  padding-top: 1px;
-}
-
-.wrapStar .starIco {
-  color: rgb(239, 202, 82);
-}
+/* BTN */
 
 .wrapBtn {
   padding: 5px;
 }
-
-.btnFinished {
-  border: 1px solid rgb(73, 73, 73);
-  background-color: transparent;
-  padding: 5px;
-  border-radius: 4px;
-}
-
-.btnFinished:hover {
-  border: 1px solid rgb(80, 209, 119);
-}
-
-/* status reading*/
-
-/* .wrap.reading {
-  background-color: #1b1f22;
-} */
-
-/* .wrap.reading:hover .cardInfo {
-  background-color: rgb(19, 47, 74);
-} */
-
-.badge.reading {
-  background-color: #224c6b;
-}
-
-.badge.reading::before {
-  content: '●';
-  color: rgb(28, 121, 155);
-}
-
-/* .cardInfo.reading {
-  background-color: #1c3c4f88;
-} */
-
-/* status completed*/
-
-/* .wrap.completed {
-  background-color: rgba(45, 153, 100, 0.08);
-} */
-
-/* .wrap.completed:hover .cardInfo {
-  background-color: rgba(35, 58, 47, 0.837);
-} */
-
-.badge.completed {
-  background-color: #316946;
-}
-
-.badge.completed::before {
-  content: '●';
-  color: rgb(34, 165, 78);
-}
-
-/* .cardInfo.completed {
-  background-color: rgba(30, 52, 40, 0.837);
-} */

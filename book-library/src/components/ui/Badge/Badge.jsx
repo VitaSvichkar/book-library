@@ -1,4 +1,4 @@
-import c from './card.module.css';
+import c from '../ui.module.css';
 
 export function Badge({ status }) {
   return (
