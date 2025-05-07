@@ -1,8 +1,12 @@
 import c from '../MyLibrary/myLibrary.module.css';
 import { Card } from '../Card/Card';
 import { Button } from '../ui/Button/Button';
+import { useSelector } from 'react-redux';
 
 export function Catalog() {
+  const state = useSelector((state) => state.books.list);
+  console.log(state);
+
   const arr = [
     {
       status: 'completed',
