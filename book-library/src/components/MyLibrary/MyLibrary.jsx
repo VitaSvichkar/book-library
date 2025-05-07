@@ -1,4 +1,5 @@
 import c from './myLibrary.module.css';
+import { Card } from '../Card/Card';
 
 export function MyLibrary() {
   const arr = [
@@ -42,7 +43,7 @@ export function MyLibrary() {
     <div className={c.wrap}>
       {arr.map((el, i) => {
         const status = getStatusClass(el?.status);
-        // return <Card />;
+        return <Card status={status} key={i} />;
       })}
     </div>
   );
