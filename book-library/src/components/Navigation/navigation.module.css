@@ -1,0 +1,13 @@
+.active {
+  color: aqua;
+}
+
+.navMain ul {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  list-style: none;
+  text-transform: uppercase;
+  border: 1px solid gainsboro;
+  /* border: 1px solid wheat; */
+}

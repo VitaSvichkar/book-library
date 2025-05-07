@@ -1,0 +1,17 @@
+.active {
+  color: rgb(21, 255, 0);
+}
+
+.navCatalog ul {
+  list-style: none;
+  /* border: 1px solid gainsboro; */
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.navCatalog ul li {
+  padding: 5px;
+  /* border: 1px solid gainsboro; */
+  background-color: #242424;
+}
