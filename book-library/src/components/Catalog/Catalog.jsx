@@ -1,65 +1,36 @@
 import c from '../MyLibrary/myLibrary.module.css';
 import { Card } from '../Card/Card';
 import { Button } from '../ui/Button/Button';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { fetchBooks } from '../../features/fetchBooks';
 
 export function Catalog() {
-  const state = useSelector((state) => state.books.list);
-  console.log(state);
+  const books = useSelector((state) => state.books.list);
+  const [page, setPage] = useState(0);
+  const dispatch = useDispatch();
 
-  const arr = [
-    {
-      status: 'completed',
-      isFinished: false,
-    },
-    {
-      status: '',
-      isFinished: false,
-    },
-    {
-      status: 'completed',
-      isFinished: false,
-    },
-    {
-      isFinished: false,
-      status: 'reading',
-    },
-    {
-      isFinished: false,
-      status: 'completed',
-    },
-    {
-      status: '',
-      isFinished: false,
-    },
-    {
-      isFinished: false,
-      status: '',
-    },
-    {
-      status: 'completed',
-      isFinished: false,
-    },
-    {
-      status: 'reading',
-      isFinished: false,
-    },
-    {
-      status: 'reading',
-      isFinished: false,
-    },
-  ];
+  useEffect(() => {
+    dispatch(fetchBooks(page));
+  }, [page, dispatch]);
+
+  function handleLoadData() {
+    const newIndex = books.length;
+    setPage(newIndex);
+  }
 
   return (
     <div className={c.wrap}>
-      {arr.map((el, i) => {
+      {books?.map((book) => {
         return (
           <Card
-            key={i}
+            key={book.id}
+            book={book}
             button={<Button isFinished={false}>Read</Button>}
           ></Card>
         );
       })}
+      <p onClick={handleLoadData}>load more</p>
     </div>
   );
 }
