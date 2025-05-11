@@ -4,26 +4,26 @@ import c from './navigation.module.css';
 export function Navigation() {
   return (
     <nav className={c.navMain}>
-      <ul>
-        <li>
+      <ul className={c.list}>
+        <li className={c.item}>
           <NavLink
-            className={({ isActive }) => (isActive ? c.active : '')}
+            className={({ isActive }) => (isActive ? c.active : c.link)}
             to="/"
           >
             My Library
           </NavLink>
         </li>
-        <li>
+        <li className={c.item}>
           <NavLink
-            className={({ isActive }) => (isActive ? c.active : '')}
+            className={({ isActive }) => (isActive ? c.active : c.link)}
             to="catalog"
           >
             Сatalog
           </NavLink>
         </li>
-        <li>
+        <li className={c.item}>
           <NavLink
-            className={({ isActive }) => (isActive ? c.active : '')}
+            className={({ isActive }) => (isActive ? c.active : c.link)}
             to="str"
           >
             str

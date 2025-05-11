@@ -3,29 +3,23 @@
   width: 100%;
   margin: 0 auto;
   padding: 10px;
-  /* text-align: center; */
-  border: 1px solid lightcoral;
 }
 
 .wrap {
-  /* border: 1px solid gray; */
+  display: grid;
+  gap: 20px;
 }
 
 .main {
   display: grid;
   grid-template-columns: 250px auto;
-  border: 1px solid hotpink;
   padding: 50px 0;
 }
 
-aside {
-  border: 1px solid gold;
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.mainCatalog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 10px;
 }

@@ -1,5 +1,5 @@
 .aside {
-  /* border: 1px solid rgb(24, 73, 38); */
+  border: 1px solid rgb(24, 73, 38);
   padding: 15px;
   display: flex;
   flex-direction: column;

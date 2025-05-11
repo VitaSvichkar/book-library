@@ -18,8 +18,16 @@ function App() {
         <header>
           <Navigation />
         </header>
-        <main className="main">
+        <main className={path.pathname === '/catalog' ? 'mainCatalog' : 'main'}>
           {path.pathname === '/catalog' ? (
+            <Search />
+          ) : (
+            <Aside>
+              <MyLibraryNavigation />
+            </Aside>
+          )}
+
+          {/* {path.pathname === '/catalog' ? (
             <Aside>
               <Search />
             </Aside>
@@ -27,7 +35,7 @@ function App() {
             <Aside>
               <MyLibraryNavigation />
             </Aside>
-          )}
+          )} */}
 
           <Routes>
             <Route path="/" element={<MyLibrary />}></Route>

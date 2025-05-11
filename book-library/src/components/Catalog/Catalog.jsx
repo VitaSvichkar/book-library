@@ -1,4 +1,4 @@
-import c from '../MyLibrary/myLibrary.module.css';
+import c from './catalog.module.css';
 import { Card } from '../Card/Card';
 import { Button } from '../ui/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,7 +26,7 @@ export function Catalog() {
           <Card
             key={book.id}
             book={book}
-            button={<Button isFinished={false}>Read</Button>}
+            button={<Button isFinished={false}>Add</Button>}
           ></Card>
         );
       })}

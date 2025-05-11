@@ -1,29 +1,31 @@
+import { Category } from '../ui/Category/Category';
 import c from './card.module.css';
-import bookCover from '../../../public/bookCover.jpg';
-import React from 'react';
 
-export function Card({ badge, progressBar, grade, button }) {
+export function Card({ badge, progressBar, grade, button, book }) {
+  const {
+    volumeInfo: { authors, imageLinks, categories, title },
+  } = book || {};
+  const bookСover = imageLinks?.smallThumbnail;
+
   return (
-    <div className={`${c.wrap}`}>
+    <div className={c.wrap}>
       {badge}
 
-      <div className={`${c.cardInfo}`}>
+      <div className={c.cardInfo}>
         <div className={c.bookСover}>
-          <img src={bookCover} alt="book" />
+          <img src={bookСover || ''} alt="#" />
         </div>
 
         <div className={c.cardDescription}>
-          <h2>Dopamine Nation</h2>
-          <p className={c.author}>Anna Lembke</p>
+          <h2 title={title}>{title}</h2>
+          <p className={c.author}>
+            {authors?.slice(0, 2).join(', ')}
+            {authors?.length > 2 && '.. '}
+          </p>
 
-          <div className={c.category}>
-            <span>Nonfiction</span>
-            <span>Psychological</span>
-          </div>
-
+          <Category categories={categories} />
           {progressBar}
           {grade}
-
           <div className={c.wrapBtn}>{button}</div>
         </div>
       </div>

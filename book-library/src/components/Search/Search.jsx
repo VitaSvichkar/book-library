@@ -4,9 +4,9 @@ export function Search() {
   return (
     <form>
       <div className={c.search}>
-        <input maxLength="50" placeholder="search" />
+        <input maxLength="70" placeholder="search" autoFocus />
         <button>
-          <img src="../public/ico-search.png" alt="#" width="20" />
+          <img src="../public/ico-search.png" alt="#" width="25" />
         </button>
       </div>
     </form>

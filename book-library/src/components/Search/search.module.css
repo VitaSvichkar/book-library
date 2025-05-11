@@ -1,23 +1,29 @@
 .search {
   display: flex;
-  /* align-items: center; */
-  /* background-color: #fff; */
+  background-color: rgba(249, 249, 249, 0.892);
+  min-width: 200px;
+  width: 700px;
+  border: 1px solid gainsboro;
+  border-radius: 50px;
+  padding: 5px 15px;
 }
 
 .search input {
   flex: 1;
-  min-width: 0;
   border: 1px solid transparent;
-  border-bottom-left-radius: 2px;
-  border-top-left-radius: 2px;
-  padding: 5px 10px;
+  background-color: transparent;
+  font-size: 20px;
+  font-style: italic;
+  text-transform: capitalize;
+  color: rgb(50, 50, 51);
 }
 
 .search input:focus {
   outline: none;
-  border: 1px solid gold;
 }
 
 .search button {
   flex-shrink: 0;
+  background-color: transparent;
+  border: none;
 }

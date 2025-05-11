@@ -1,13 +1,20 @@
-.active {
-  color: aqua;
-}
-
-.navMain ul {
+.list {
   display: flex;
   justify-content: center;
   gap: 20px;
   list-style: none;
   text-transform: uppercase;
-  border: 1px solid gainsboro;
-  /* border: 1px solid wheat; */
+}
+
+.active,
+.link {
+  border-radius: 5px;
+  display: block;
+  padding: 5px;
+  transition: 0.3s ease all;
+}
+
+.active,
+.link:hover {
+  color: rgb(108, 116, 220);
 }
