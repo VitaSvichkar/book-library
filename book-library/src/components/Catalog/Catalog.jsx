@@ -4,9 +4,10 @@ import { Button } from '../ui/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchBooks } from '../../features/fetchBooks';
+import { getBooks } from '../../features/booksSlice';
 
 export function Catalog() {
-  const books = useSelector((state) => state.books.list);
+  const books = useSelector(getBooks);
   const [page, setPage] = useState(0);
   const dispatch = useDispatch();
 

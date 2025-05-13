@@ -16,5 +16,8 @@ const booksSlice = createSlice({
 });
 
 export const { setBooks } = booksSlice.actions;
-console.log(booksSlice.actions);
+export function getBooks(state) {
+  return state.books.list;
+}
+
 export default booksSlice;

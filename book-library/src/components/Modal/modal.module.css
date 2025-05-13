@@ -1,0 +1,101 @@
+.overlay {
+  display: flex;
+  background-color: #00000094;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #ffffff;
+  color: black;
+  min-width: 300px;
+  width: 500px;
+  border-radius: 10px;
+  cursor: default;
+  padding: 15px;
+}
+
+.modal h1 {
+  color: rgb(38, 72, 173);
+}
+
+.wrap {
+  display: flex;
+  gap: 30px;
+}
+
+.bookCover {
+  border: 1px solid rgb(42, 42, 42);
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex: 0;
+}
+
+.wrapBookMeta {
+  max-height: 165px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.bookMeta {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.bookMeta th,
+td {
+  padding: 3px;
+  font-weight: 400;
+  border-bottom: 1px solid rgb(232, 232, 232);
+}
+
+.bookMeta th {
+  white-space: nowrap;
+}
+
+.bookMeta td {
+  padding-left: 10px;
+  text-align: right;
+}
+
+.aboutBook p {
+  overflow-y: auto;
+  max-height: 250px;
+}
+
+.aboutBook h2 {
+  padding: 10px 0;
+}
+
+.aboutBook p,
+.wrapBookMeta {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f0f0f0;
+}
+
+.aboutBook p::-webkit-scrollbar,
+.wrapBookMeta::-webkit-scrollbar {
+  width: 8px;
+}
+
+.aboutBook p::-webkit-scrollbar-track,
+.wrapBookMeta::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+.aboutBook p::-webkit-scrollbar-thumb,
+.wrapBookMeta::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
