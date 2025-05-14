@@ -27,3 +27,11 @@
   background-color: transparent;
   border: none;
 }
+
+.infoMessage {
+  background-color: #131313;
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 20px;
+}

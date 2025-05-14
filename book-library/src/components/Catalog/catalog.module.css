@@ -1,6 +1,21 @@
 .wrap {
   display: grid;
+  justify-items: center;
+  gap: 30px;
+}
+
+.books {
+  display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   justify-items: center;
+}
+
+.btnLoadBooks {
+  background-color: rebeccapurple;
+  padding: 10px;
+}
+
+.btnLoadBooks:hover {
+  background-color: rgb(80, 37, 123);
 }

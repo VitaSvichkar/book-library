@@ -17,7 +17,7 @@ app.get('/api/books', async (req, res) => {
     const query = [];
 
     if (q) {
-      query.push(`intitle:${q}`);
+      query.push(`intitle:"${q}"`);
     }
     if (author) {
       query.push(`inauthor:${author}`);
@@ -31,11 +31,8 @@ app.get('/api/books', async (req, res) => {
       params: {
         q: queryStr,
         startIndex,
-        maxResults: 10,
-        filter: 'ebooks',
+        maxResults: 12,
         printType: 'books',
-        orderBy: 'relevance',
-        // download: epub,
         key: 'AIzaSyBwKA-feiB8qddjj8S0wSnOUmIDrnN0Vks',
       },
     });

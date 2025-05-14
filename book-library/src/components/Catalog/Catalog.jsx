@@ -2,36 +2,52 @@ import c from './catalog.module.css';
 import { Card } from '../Card/Card';
 import { Button } from '../ui/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
 import { fetchBooks } from '../../features/fetchBooks';
-import { getBooks } from '../../features/booksSlice';
+import { getBooksState } from '../../features/booksSlice';
+import { getKeyword } from '../../features/searchSlice';
 
 export function Catalog() {
-  const books = useSelector(getBooks);
-  const [page, setPage] = useState(0);
+  const { list: books, totalItems, maxResult } = useSelector(getBooksState);
+  const keyword = useSelector(getKeyword);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchBooks(page));
-  }, [page, dispatch]);
 
   function handleLoadData() {
     const newIndex = books.length;
-    setPage(newIndex);
+    dispatch(fetchBooks(keyword, newIndex));
   }
 
+  const restBooks =
+    maxResult && totalItems
+      ? (totalItems - books.length) / maxResult >= 1
+      : false;
+
   return (
-    <div className={c.wrap}>
-      {books?.map((book) => {
-        return (
-          <Card
-            key={book.id}
-            book={book}
-            button={<Button isFinished={false}>Add</Button>}
-          ></Card>
-        );
-      })}
-      <p onClick={handleLoadData}>load more</p>
-    </div>
+    <>
+      {books.length > 0 ? (
+        <div className={c.wrap}>
+          <div className={c.books}>
+            {books?.map((book) => {
+              return (
+                <Card
+                  key={book.id}
+                  book={book}
+                  button={<Button isFinished={false}>Add</Button>}
+                ></Card>
+              );
+            })}
+          </div>
+
+          {restBooks ? (
+            <button className={c.btnLoadBooks} onClick={handleLoadData}>
+              Load more
+            </button>
+          ) : (
+            ''
+          )}
+        </div>
+      ) : (
+        ''
+      )}
+    </>
   );
 }
