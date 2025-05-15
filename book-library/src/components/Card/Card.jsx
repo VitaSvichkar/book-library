@@ -2,21 +2,33 @@ import { useDispatch } from 'react-redux';
 import { openModal } from '../../features/modalSlice';
 import { Category } from '../ui/Category/Category';
 import c from './card.module.css';
+import { fetchBooks } from '../../features/fetchBooks';
+import { clearBooks } from '../../features/booksSlice';
 
 export function Card({ badge, progressBar, grade, button, book }) {
   const {
     volumeInfo: { authors, imageLinks, categories, title },
   } = book || {};
 
+  const sliceAuthors = authors?.slice(0, 2);
   const bookСover = imageLinks?.smallThumbnail;
   const dispatch = useDispatch();
 
-  function handleOpenModal(book) {
+  function handleOpenModal(e, book) {
+    if (e.target.closest(`.${c.author}`)) {
+      return;
+    }
     dispatch(openModal(book));
   }
 
+  function handleSearchAuthor(e, el) {
+    e.preventDefault();
+    dispatch(clearBooks());
+    dispatch(fetchBooks(undefined, el, 0));
+  }
+
   return (
-    <div className={c.wrap} onClick={() => handleOpenModal(book)}>
+    <div className={c.wrap} onClick={(e) => handleOpenModal(e, book)}>
       {badge}
 
       <div className={c.cardInfo}>
@@ -26,9 +38,16 @@ export function Card({ badge, progressBar, grade, button, book }) {
 
         <div className={c.cardDescription}>
           <h2 title={title}>{title}</h2>
-          <p className={c.author}>
-            {authors?.slice(0, 2).join(', ')}
-            {authors?.length > 2 && '.. '}
+          <p className={c.authors}>
+            {sliceAuthors?.map((el, i) => (
+              <span
+                onClick={(e) => handleSearchAuthor(e, el)}
+                className={c.author}
+                key={i}
+              >
+                {el}
+              </span>
+            ))}
           </p>
 
           <Category categories={categories} />

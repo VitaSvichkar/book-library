@@ -10,6 +10,11 @@
   background-color: #612b54;
   border-radius: 4px;
   padding: 2px 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .category:hover {

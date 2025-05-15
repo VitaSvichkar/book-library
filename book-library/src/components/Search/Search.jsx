@@ -10,21 +10,43 @@ export function Search() {
   const { list: books } = useSelector(getBooksState);
   const dispatch = useDispatch();
   const [isRequest, setIsRequest] = useState(false);
+  const [searchType, setSearchType] = useState('author');
 
   function handleSetValue(e) {
     dispatch(setKeyword(e.target.value));
   }
 
+  function handleSetSearchType(value) {
+    setSearchType(value);
+  }
+
   function handleSetFetch(e) {
     e.preventDefault();
-    dispatch(fetchBooks(keyword, 0));
+
+    if (searchType === 'author') {
+      dispatch(fetchBooks(undefined, keyword, 0));
+    } else {
+      dispatch(fetchBooks(keyword, undefined, 0));
+    }
+
     dispatch(clearBooks());
     setIsRequest(true);
   }
 
   return (
     <>
-      <form onSubmit={handleSetFetch}>
+      <form className={c.form} onSubmit={handleSetFetch}>
+        <div className={c.wrapSelect}>
+          <select
+            value={searchType}
+            className={c.select}
+            onChange={(e) => handleSetSearchType(e.target.value)}
+          >
+            <option value="author">Search by author</option>
+            <option value="name">Search by title</option>
+          </select>
+        </div>
+
         <div className={c.search}>
           <input
             onChange={handleSetValue}

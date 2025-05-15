@@ -16,13 +16,13 @@ app.get('/api/books', async (req, res) => {
   try {
     const query = [];
 
-    if (q) {
+    if (q && q.trim()) {
       query.push(`intitle:"${q}"`);
     }
-    if (author) {
+    if (author && author.trim()) {
       query.push(`inauthor:${author}`);
     }
-    if (subject) {
+    if (subject && subject.trim()) {
       query.push(`subject:${subject}`);
     }
 
@@ -33,7 +33,7 @@ app.get('/api/books', async (req, res) => {
         startIndex,
         maxResults: 12,
         printType: 'books',
-        key: 'AIzaSyBwKA-feiB8qddjj8S0wSnOUmIDrnN0Vks',
+        key: process.env.GOOGLE_API_KEY,
       },
     });
 

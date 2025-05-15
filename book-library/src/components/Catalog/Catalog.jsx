@@ -13,7 +13,7 @@ export function Catalog() {
 
   function handleLoadData() {
     const newIndex = books.length;
-    dispatch(fetchBooks(keyword, newIndex));
+    dispatch(fetchBooks(keyword, undefined, newIndex));
   }
 
   const restBooks =
