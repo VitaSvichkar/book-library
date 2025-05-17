@@ -15,7 +15,10 @@ export function Card({ badge, progressBar, grade, button, book }) {
   const dispatch = useDispatch();
 
   function handleOpenModal(e, book) {
-    if (e.target.closest(`.${c.author}`)) {
+    if (
+      e.target.closest(`.${c.author}`) ||
+      e.target.closest(`.${c.categories}`)
+    ) {
       return;
     }
     dispatch(openModal(book));
@@ -24,7 +27,7 @@ export function Card({ badge, progressBar, grade, button, book }) {
   function handleSearchAuthor(e, el) {
     e.preventDefault();
     dispatch(clearBooks());
-    dispatch(fetchBooks(undefined, el, 0));
+    dispatch(fetchBooks(undefined, el, undefined, 0));
   }
 
   return (
@@ -50,7 +53,9 @@ export function Card({ badge, progressBar, grade, button, book }) {
             ))}
           </p>
 
-          <Category categories={categories} />
+          <div className={c.categories}>
+            <Category categories={categories} />
+          </div>
           {progressBar}
           {grade}
           <div className={c.wrapBtn}>{button}</div>

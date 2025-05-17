@@ -23,14 +23,32 @@ export function Search() {
   function handleSetFetch(e) {
     e.preventDefault();
 
-    if (searchType === 'author') {
-      dispatch(fetchBooks(undefined, keyword, 0));
-    } else {
-      dispatch(fetchBooks(keyword, undefined, 0));
+    switch (searchType) {
+      case 'author':
+        dispatch(fetchBooks(undefined, keyword, undefined, 0));
+        break;
+      case 'category':
+        dispatch(fetchBooks(undefined, undefined, keyword, 0));
+        break;
+      default:
+        dispatch(fetchBooks(keyword, undefined, undefined, 0));
     }
 
     dispatch(clearBooks());
     setIsRequest(true);
+  }
+
+  function placeholderText() {
+    switch (searchType) {
+      case 'author':
+        return 'e.g., John Fowles, Rowling';
+
+      case 'category':
+        return 'e.g., Fiction, History, Science';
+
+      default:
+        return 'e.g., Harry Potter, The Godfather';
+    }
   }
 
   return (
@@ -43,7 +61,8 @@ export function Search() {
             onChange={(e) => handleSetSearchType(e.target.value)}
           >
             <option value="author">Search by author</option>
-            <option value="name">Search by title</option>
+            <option value="title">Search by title</option>
+            <option value="category">Search by category</option>
           </select>
         </div>
 
@@ -51,7 +70,8 @@ export function Search() {
           <input
             onChange={handleSetValue}
             maxLength="70"
-            placeholder="enter the book title"
+            placeholder={placeholderText()}
+            // placeholder={'jj'}
             autoFocus
             value={keyword}
           />

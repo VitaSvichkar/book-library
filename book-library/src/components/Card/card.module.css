@@ -70,7 +70,7 @@
   display: flex;
 }
 
-.authors .author {
+.author {
   display: inline-block;
   padding: 5px;
   border-radius: 4px;
@@ -78,7 +78,19 @@
   line-height: 1.1;
 }
 
-.authors .author:hover {
+.author:hover {
+  background-color: #5f606441;
+}
+
+.categories {
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+  border-radius: 4px;
+  transition: 0.2s ease all;
+}
+
+.categories:hover {
   background-color: #5f606441;
 }
 

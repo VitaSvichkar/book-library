@@ -1,12 +1,4 @@
 .category {
-  display: flex;
-  gap: 5px;
-  padding: 5px;
-  border-radius: 4px;
-  transition: 0.2s ease all;
-}
-
-.category span {
   background-color: #612b54;
   border-radius: 4px;
   padding: 2px 5px;
@@ -15,8 +7,4 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.category:hover {
-  background-color: #5f606441;
 }
