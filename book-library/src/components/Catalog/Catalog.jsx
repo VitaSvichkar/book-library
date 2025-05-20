@@ -2,24 +2,19 @@ import c from './catalog.module.css';
 import { Card } from '../Card/Card';
 import { Button } from '../ui/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooks } from '../../features/fetchBooks';
-import { getBooksState } from '../../features/booksSlice';
+import { getBooksState, setIsLoading } from '../../features/booksSlice';
 import { getKeyword } from '../../features/searchSlice';
+import { loadMoreBooks } from '../../features/loadMoreBooks';
 
 export function Catalog() {
-  const { list: books, totalItems, maxResult } = useSelector(getBooksState);
+  const { list: books, buffer, isLoading } = useSelector(getBooksState);
   const keyword = useSelector(getKeyword);
   const dispatch = useDispatch();
 
   function handleLoadData() {
-    const newIndex = books.length;
-    dispatch(fetchBooks(keyword, undefined, undefined, newIndex));
+    dispatch(setIsLoading()); //true
+    dispatch(loadMoreBooks(keyword));
   }
-
-  const restBooks =
-    maxResult && totalItems
-      ? (totalItems - books.length) / maxResult >= 1
-      : false;
 
   return (
     <>
@@ -37,8 +32,12 @@ export function Catalog() {
             })}
           </div>
 
-          {restBooks ? (
-            <button className={c.btnLoadBooks} onClick={handleLoadData}>
+          {buffer.length > 0 ? (
+            <button
+              disabled={isLoading}
+              className={c.btnLoadBooks}
+              onClick={handleLoadData}
+            >
               Load more
             </button>
           ) : (

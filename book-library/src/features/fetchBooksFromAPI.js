@@ -1,0 +1,58 @@
+import axios from 'axios';
+
+function makeQuery(type, value) {
+  switch (type) {
+    case 'author':
+      return `inauthor:"${value}"`;
+    case 'title':
+      return `intitle:"${value}"`;
+    case 'category':
+      return `subject:${value}`;
+    default:
+      return value;
+  }
+}
+
+export const fetchBooksFromAPI = async (
+  value,
+  type,
+  index = 0,
+  buffer = [],
+  maxResult,
+  maxRequest = 5
+) => {
+  let attempts = 0;
+  let currentIndex = index;
+  let newBooks = [...buffer];
+
+  while (newBooks.length < maxResult + 1 && attempts <= maxRequest) {
+    const res = await axios.get('http://localhost:5000/api/books', {
+      params: {
+        q: makeQuery(type, value),
+        currentIndex,
+      },
+    });
+
+    const data = res.data.items || [];
+
+    const filteredData = data.filter(
+      (el) =>
+        el.volumeInfo.imageLinks &&
+        (el.volumeInfo.description && el.volumeInfo.description.length) > 30
+    );
+
+    newBooks = [...newBooks, ...filteredData];
+    currentIndex += maxResult;
+    attempts += 1;
+
+    if (data.length === 0) {
+      break;
+    }
+  }
+
+  return {
+    booksToShow: newBooks.slice(0, maxResult),
+    bufferLeft: newBooks.slice(maxResult),
+    nextIndex: currentIndex,
+  };
+};

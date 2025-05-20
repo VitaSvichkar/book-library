@@ -3,7 +3,7 @@ import { openModal } from '../../features/modalSlice';
 import { Category } from '../ui/Category/Category';
 import c from './card.module.css';
 import { fetchBooks } from '../../features/fetchBooks';
-import { clearBooks } from '../../features/booksSlice';
+import { setKeyword, setTypeQuery } from '../../features/searchSlice';
 
 export function Card({ badge, progressBar, grade, button, book }) {
   const {
@@ -26,8 +26,9 @@ export function Card({ badge, progressBar, grade, button, book }) {
 
   function handleSearchAuthor(e, el) {
     e.preventDefault();
-    dispatch(clearBooks());
-    dispatch(fetchBooks(undefined, el, undefined, 0));
+    dispatch(setTypeQuery('author'));
+    dispatch(setKeyword(el));
+    dispatch(fetchBooks(el, 'author'));
   }
 
   return (

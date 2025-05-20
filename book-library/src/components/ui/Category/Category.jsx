@@ -1,17 +1,16 @@
 import { useDispatch } from 'react-redux';
 import c from './category.module.css';
 import { fetchBooks } from '../../../features/fetchBooks';
-import { clearBooks } from '../../../features/booksSlice';
+import { setKeyword, setTypeQuery } from '../../../features/searchSlice';
 
 export function Category({ categories }) {
   const dispatch = useDispatch();
+
   function handleSearchCategory(e, category) {
     e.preventDefault();
-
-    console.log(category);
-    dispatch(clearBooks());
-
-    dispatch(fetchBooks(undefined, undefined, category, 0));
+    dispatch(setTypeQuery('category'));
+    dispatch(setKeyword(category));
+    dispatch(fetchBooks(category, 'category'));
   }
 
   return (

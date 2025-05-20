@@ -1,45 +1,44 @@
 import c from './search.module.css';
-import { getKeyword, setKeyword } from '../../features/searchSlice';
+import {
+  getKeyword,
+  getType,
+  setKeyword,
+  setLastKeyword,
+  setTypeQuery,
+} from '../../features/searchSlice';
 import { fetchBooks } from '../../features/fetchBooks';
-import { clearBooks, getBooksState } from '../../features/booksSlice';
+import { getBooksState, setIsLoading } from '../../features/booksSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
 export function Search() {
   const keyword = useSelector(getKeyword);
-  const { list: books } = useSelector(getBooksState);
+  const { list: books, isLoading } = useSelector(getBooksState);
+  const type = useSelector(getType);
   const dispatch = useDispatch();
   const [isRequest, setIsRequest] = useState(false);
-  const [searchType, setSearchType] = useState('author');
 
   function handleSetValue(e) {
     dispatch(setKeyword(e.target.value));
   }
 
   function handleSetSearchType(value) {
-    setSearchType(value);
+    dispatch(setLastKeyword(''));
+    dispatch(setTypeQuery(value));
   }
 
   function handleSetFetch(e) {
+    const formData = new FormData(e.target);
+    const currentType = formData.get('searchType');
     e.preventDefault();
-
-    switch (searchType) {
-      case 'author':
-        dispatch(fetchBooks(undefined, keyword, undefined, 0));
-        break;
-      case 'category':
-        dispatch(fetchBooks(undefined, undefined, keyword, 0));
-        break;
-      default:
-        dispatch(fetchBooks(keyword, undefined, undefined, 0));
-    }
-
-    dispatch(clearBooks());
+    dispatch(setIsLoading()); //true
+    dispatch(fetchBooks(keyword, currentType));
+    dispatch(setTypeQuery(currentType));
     setIsRequest(true);
   }
 
   function placeholderText() {
-    switch (searchType) {
+    switch (type) {
       case 'author':
         return 'e.g., John Fowles, Rowling';
 
@@ -56,7 +55,8 @@ export function Search() {
       <form className={c.form} onSubmit={handleSetFetch}>
         <div className={c.wrapSelect}>
           <select
-            value={searchType}
+            name="searchType"
+            value={type}
             className={c.select}
             onChange={(e) => handleSetSearchType(e.target.value)}
           >
@@ -71,7 +71,6 @@ export function Search() {
             onChange={handleSetValue}
             maxLength="70"
             placeholder={placeholderText()}
-            // placeholder={'jj'}
             autoFocus
             value={keyword}
           />
@@ -80,8 +79,8 @@ export function Search() {
           </button>
         </div>
       </form>
-
-      {isRequest && books.length < 1 && (
+      {isLoading && 'looooaaaddding'}
+      {isRequest && !isLoading && books.length < 1 && (
         <p className={c.infoMessage}>
           We couldn't find anything. Maybe try another keyword? 😸
         </p>

@@ -19,3 +19,11 @@
 .btnLoadBooks:hover {
   background-color: rgb(80, 37, 123);
 }
+
+.btnLoadBooks:disabled {
+  background-color: rgb(79, 79, 79);
+}
+
+.btnLoadBooks:disabled:hover {
+  background-color: rgb(79, 79, 79);
+}

@@ -11,26 +11,15 @@ const api = axios.create({
 });
 
 app.get('/api/books', async (req, res) => {
-  const { q, startIndex, author, subject } = req.query;
+  const { q, currentIndex } = req.query;
 
   try {
-    const query = [];
+    const queryStr = q && q.trim() ? q : undefined;
 
-    if (q && q.trim()) {
-      query.push(`intitle:"${q}"`);
-    }
-    if (author && author.trim()) {
-      query.push(`inauthor:${author}`);
-    }
-    if (subject && subject.trim()) {
-      query.push(`subject:${subject}`);
-    }
-
-    const queryStr = query.length ? query.join('+') : '';
     const response = await api.get(`/volumes`, {
       params: {
         q: queryStr,
-        startIndex,
+        startIndex: currentIndex,
         maxResults: 12,
         printType: 'books',
         key: process.env.GOOGLE_API_KEY,
