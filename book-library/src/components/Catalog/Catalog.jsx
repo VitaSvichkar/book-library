@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getBooksState, setIsLoading } from '../../features/booksSlice';
 import { getKeyword } from '../../features/searchSlice';
 import { loadMoreBooks } from '../../features/loadMoreBooks';
+import { Loading } from '../ui/Loading/Loading';
 
 export function Catalog() {
   const { list: books, buffer, isLoading } = useSelector(getBooksState);
@@ -12,7 +13,7 @@ export function Catalog() {
   const dispatch = useDispatch();
 
   function handleLoadData() {
-    dispatch(setIsLoading()); //true
+    dispatch(setIsLoading({ type: 'loadMore', value: true }));
     dispatch(loadMoreBooks(keyword));
   }
 
@@ -31,10 +32,10 @@ export function Catalog() {
               );
             })}
           </div>
-
-          {buffer.length > 0 ? (
+          {isLoading.loadMore && <Loading />}
+          {buffer.length > 0 && !isLoading.loadMore ? (
             <button
-              disabled={isLoading}
+              disabled={isLoading.loadMore}
               className={c.btnLoadBooks}
               onClick={handleLoadData}
             >

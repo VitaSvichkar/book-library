@@ -13,9 +13,11 @@ export const fetchBooks = (value, type) => async (dispatch, getState) => {
   const lastKeyword = state.search.lastKeyword;
 
   if (lastKeyword === value) {
+    dispatch(setIsLoading({ type: 'search', value: false }));
     console.log('return ');
     return;
   }
+
   dispatch(setBuffer([]));
   dispatch(clearBooks());
   dispatch(setStartIndex(0));
@@ -32,9 +34,8 @@ export const fetchBooks = (value, type) => async (dispatch, getState) => {
     maxResult
   );
 
-  console.log(booksToShow, bufferLeft);
   dispatch(setBooks(booksToShow));
   dispatch(setBuffer(bufferLeft));
   dispatch(setStartIndex(nextIndex));
-  dispatch(setIsLoading()); //false
+  dispatch(setIsLoading({ type: 'search', value: false }));
 };

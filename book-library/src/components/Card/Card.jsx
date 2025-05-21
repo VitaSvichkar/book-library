@@ -4,6 +4,7 @@ import { Category } from '../ui/Category/Category';
 import c from './card.module.css';
 import { fetchBooks } from '../../features/fetchBooks';
 import { setKeyword, setTypeQuery } from '../../features/searchSlice';
+import { setIsLoading } from '../../features/booksSlice';
 
 export function Card({ badge, progressBar, grade, button, book }) {
   const {
@@ -26,6 +27,7 @@ export function Card({ badge, progressBar, grade, button, book }) {
 
   function handleSearchAuthor(e, el) {
     e.preventDefault();
+    dispatch(setIsLoading({ type: 'search', value: true }));
     dispatch(setTypeQuery('author'));
     dispatch(setKeyword(el));
     dispatch(fetchBooks(el, 'author'));

@@ -7,7 +7,10 @@ const initialState = {
   startIndex: 0,
   attempts: 0,
   buffer: [],
-  isLoading: false,
+  isLoading: {
+    search: false,
+    loadMore: false,
+  },
 };
 
 const booksSlice = createSlice({
@@ -22,8 +25,9 @@ const booksSlice = createSlice({
       return { ...state, list: [] };
     },
 
-    setIsLoading: (state) => {
-      return { ...state, isLoading: !state.isLoading };
+    setIsLoading: (state, action) => {
+      const { type, value } = action.payload;
+      return { ...state, isLoading: { ...state.isLoading, [type]: value } };
     },
 
     setTotalItems: (state, action) => {

@@ -10,6 +10,7 @@ import { fetchBooks } from '../../features/fetchBooks';
 import { getBooksState, setIsLoading } from '../../features/booksSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { Loading } from '../ui/Loading/Loading';
 
 export function Search() {
   const keyword = useSelector(getKeyword);
@@ -31,7 +32,7 @@ export function Search() {
     const formData = new FormData(e.target);
     const currentType = formData.get('searchType');
     e.preventDefault();
-    dispatch(setIsLoading()); //true
+    dispatch(setIsLoading({ type: 'search', value: true }));
     dispatch(fetchBooks(keyword, currentType));
     dispatch(setTypeQuery(currentType));
     setIsRequest(true);
@@ -79,8 +80,8 @@ export function Search() {
           </button>
         </div>
       </form>
-      {isLoading && 'looooaaaddding'}
-      {isRequest && !isLoading && books.length < 1 && (
+      {isLoading.search && <Loading />}
+      {isRequest && !isLoading.search && books.length < 1 && (
         <p className={c.infoMessage}>
           We couldn't find anything. Maybe try another keyword? 😸
         </p>

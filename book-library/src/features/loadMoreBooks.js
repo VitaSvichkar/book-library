@@ -17,5 +17,5 @@ export const loadMoreBooks = (value, type) => async (dispatch, getState) => {
   dispatch(setBooks(booksToShow));
   dispatch(setBuffer(bufferLeft));
   dispatch(setStartIndex(nextIndex));
-  dispatch(setIsLoading()); //false
+  dispatch(setIsLoading({ type: 'loadMore', value: false }));
 };
