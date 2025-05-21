@@ -38,28 +38,42 @@ export function Modal({ book }) {
           <div className={c.wrapBookMeta}>
             <table className={c.bookMeta}>
               <tbody>
-                <tr>
-                  <th>Author</th>
-                  <td>{authors}</td>
-                </tr>
-                <tr>
-                  <th>Publisher</th>
-                  <td>{publisher}</td>
-                </tr>
-                <tr>
-                  <th>Year</th>
-                  <td>{publishedDate}</td>
-                </tr>
-                <tr>
-                  <th>Page count</th>
-                  <td>{pageCount}</td>
-                </tr>
-                <tr>
-                  <th>Preview</th>
-                  <td>
-                    <a href={previewLink}>Open me</a>
-                  </td>
-                </tr>
+                {authors.length > 0 && (
+                  <tr>
+                    <th>Author</th>
+                    <td>{authors.join(', ')}</td>
+                  </tr>
+                )}
+
+                {publisher && (
+                  <tr>
+                    <th>Publisher</th>
+                    <td>{publisher}</td>
+                  </tr>
+                )}
+
+                {publishedDate && (
+                  <tr>
+                    <th>Year</th>
+                    <td>{publishedDate}</td>
+                  </tr>
+                )}
+
+                {typeof pageCount === 'number' && pageCount > 0 && (
+                  <tr>
+                    <th>Page count</th>
+                    <td>{pageCount}</td>
+                  </tr>
+                )}
+
+                {previewLink && (
+                  <tr>
+                    <th>Preview</th>
+                    <td>
+                      <a href={previewLink}>Open me</a>
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
