@@ -8,18 +8,11 @@
 .wrap {
   display: grid;
   gap: 20px;
+  justify-items: center;
 }
 
 .main {
   display: grid;
   grid-template-columns: 250px auto;
   padding: 50px 0;
-}
-
-.mainCatalog {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  padding: 10px;
 }

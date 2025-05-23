@@ -14,7 +14,7 @@ import { Loading } from '../ui/Loading/Loading';
 
 export function Search() {
   const keyword = useSelector(getKeyword);
-  const { list: books, isLoading } = useSelector(getBooksState);
+  const { books, isLoading } = useSelector(getBooksState);
   const type = useSelector(getType);
   const dispatch = useDispatch();
   const [isRequest, setIsRequest] = useState(false);

@@ -7,9 +7,11 @@ import {
   setIsLoading,
   setStartIndex,
 } from './booksSlice';
+import checkAndSetIsAdded from './checkAndSetIsAdded';
 
 export const fetchBooks = (value, type) => async (dispatch, getState) => {
   const state = getState();
+  const myAddedBooks = state.myBooks.myBooks;
   const lastKeyword = state.search.lastKeyword;
 
   if (lastKeyword === value) {
@@ -34,7 +36,10 @@ export const fetchBooks = (value, type) => async (dispatch, getState) => {
     maxResult
   );
 
-  dispatch(setBooks(booksToShow));
+  // set book.isAdded
+  const books = checkAndSetIsAdded(myAddedBooks, booksToShow);
+
+  dispatch(setBooks(books));
   dispatch(setBuffer(bufferLeft));
   dispatch(setStartIndex(nextIndex));
   dispatch(setIsLoading({ type: 'search', value: false }));

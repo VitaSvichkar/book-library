@@ -4,50 +4,13 @@ import { Badge } from '../ui/Badge/Badge';
 import { ProgressBar } from '../ui/ProgressBar/ProgressBar';
 import { Grade } from '../ui/Grade/Grade';
 import { Button } from '../ui/Button/Button';
+import { Aside } from '../Aside/Aside';
+import { MyLibraryNavigation } from '../MyLibraryNavigation/MyLibraryNavigation';
+import { useSelector } from 'react-redux';
+import { getMyBooks } from '../../features/myBooksSlice';
 
 export function MyLibrary() {
-  const arr = [
-    {
-      status: 'completed',
-      isFinished: false,
-    },
-    {
-      status: '',
-      isFinished: false,
-    },
-    {
-      status: 'completed',
-      isFinished: false,
-    },
-    {
-      isFinished: false,
-      status: 'reading',
-    },
-    {
-      isFinished: false,
-      status: 'completed',
-    },
-    {
-      status: '',
-      isFinished: false,
-    },
-    {
-      isFinished: false,
-      status: '',
-    },
-    {
-      status: 'completed',
-      isFinished: false,
-    },
-    {
-      status: 'reading',
-      isFinished: false,
-    },
-    {
-      status: 'reading',
-      isFinished: false,
-    },
-  ];
+  const myBooks = useSelector(getMyBooks);
 
   function getStatusClass(status) {
     return status === 'reading' || status === 'completed' ? status : '';
@@ -55,19 +18,27 @@ export function MyLibrary() {
 
   return (
     <div className={c.wrap}>
-      {arr.map((el, i) => {
-        const status = getStatusClass(el?.status);
+      <Aside>
+        <MyLibraryNavigation />
+      </Aside>
 
-        return (
-          <Card
-            key={i}
-            badge={<Badge status={status} />}
-            progressBar={<ProgressBar pages={200} />}
-            grade={<Grade />}
-            button={<Button isFinished={false}>Finished</Button>}
-          />
-        );
-      })}
+      <div className={c.wrapBooks}>
+        {myBooks.length > 0 &&
+          myBooks.map((book) => {
+            const status = getStatusClass(book.status);
+
+            return (
+              <Card
+                key={book.id}
+                badge={<Badge status={status} />}
+                progressBar={<ProgressBar pages={book.volumeInfo?.pageCount} />}
+                grade={<Grade />}
+                button={<Button />}
+                book={book}
+              />
+            );
+          })}
+      </div>
     </div>
   );
 }

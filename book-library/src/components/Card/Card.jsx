@@ -18,7 +18,8 @@ export function Card({ badge, progressBar, grade, button, book }) {
   function handleOpenModal(e, book) {
     if (
       e.target.closest(`.${c.author}`) ||
-      e.target.closest(`.${c.categories}`)
+      e.target.closest(`.${c.categories}`) ||
+      e.target.closest(`.${c.wrapBtn}`)
     ) {
       return;
     }

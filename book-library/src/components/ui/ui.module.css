@@ -89,12 +89,10 @@ input[type='range']::-moz-range-thumb {
 }
 
 .wrapStar,
-.wrapLabel,
-.author,
-.category {
+.wrapLabel {
   padding: 5px;
   border-radius: 4px;
-  transition: 0.2s ease all;
+  transition: 0.3s ease all;
 }
 
 .wrapStar:hover,
@@ -125,18 +123,26 @@ input[type='range']::-moz-range-thumb {
 
 /* BTN */
 
-.btnFinished {
-  border: 1px solid rgb(73, 73, 73);
+.btn {
+  color: rgb(101, 102, 99);
   background-color: transparent;
-  padding: 5px 7px;
+  padding: 5px;
   border-radius: 4px;
+  font-size: 17px;
+  transition: 0.2s ease all;
 }
 
-/* .btnMargin {
-  margin-left: 5px;
-} */
+.btn span {
+  display: flex;
+}
 
-.btnFinished:hover {
-  border: 1px solid rgb(170, 210, 133);
-  color: rgb(170, 210, 133);
+.btn:hover {
+  transform: scale(1.4);
+  color: rgb(153, 209, 101);
+}
+
+/* BTN ADDED */
+
+.btnAdded {
+  color: rgb(108, 159, 61);
 }

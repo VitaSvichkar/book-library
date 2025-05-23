@@ -1,17 +1,9 @@
 import c from '../ui.module.css';
 
-export function Button({ isFinished, children }) {
-  function handleSetStatus() {
-    //dispatch
-  }
-
+export function Button({ onClick, children, className }) {
   return (
-    <button
-      onClick={handleSetStatus}
-      className={`${c.btnFinished}`}
-      disabled={isFinished}
-    >
-      {children}
+    <button onClick={onClick} className={`${c.btn} ${c[className]} `}>
+      <span className={className}>{children}</span>
     </button>
   );
 }

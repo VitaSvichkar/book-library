@@ -41,7 +41,14 @@ export const fetchBooksFromAPI = async (
         (el.volumeInfo.description && el.volumeInfo.description.length) > 30
     );
 
-    newBooks = [...newBooks, ...filteredData];
+    const extendedBooks = filteredData.map((book) => ({
+      ...book,
+      isAdded: false,
+      isFinished: false,
+      status: '',
+    }));
+
+    newBooks = [...newBooks, ...extendedBooks];
     currentIndex += maxResult;
     attempts += 1;
 
