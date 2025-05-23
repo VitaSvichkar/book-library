@@ -129,14 +129,14 @@ input[type='range']::-moz-range-thumb {
   padding: 5px;
   border-radius: 4px;
   font-size: 17px;
-  transition: 0.2s ease all;
 }
 
 .btn span {
   display: flex;
+  transition: 0.2s ease all;
 }
 
-.btn:hover {
+.btn:hover span {
   transform: scale(1.4);
   color: rgb(153, 209, 101);
 }

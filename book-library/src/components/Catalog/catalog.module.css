@@ -18,20 +18,3 @@
   gap: 20px;
   justify-items: center;
 }
-
-.btnLoadBooks {
-  background-color: rebeccapurple;
-  padding: 10px;
-}
-
-.btnLoadBooks:hover {
-  background-color: rgb(80, 37, 123);
-}
-
-.btnLoadBooks:disabled {
-  background-color: rgb(79, 79, 79);
-}
-
-.btnLoadBooks:disabled:hover {
-  background-color: rgb(79, 79, 79);
-}
