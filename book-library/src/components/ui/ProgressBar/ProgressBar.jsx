@@ -26,10 +26,9 @@ export function ProgressBar({ pages }) {
         />
         <div style={{ width: barState.width + '%' }}></div>
       </label>
-      {/* <label>
-        <input type="text" />
-      </label> */}
-      <span>{barState.progress}</span>
+      <span>
+        {barState.progress}/{pages}
+      </span>
     </div>
   );
 }
