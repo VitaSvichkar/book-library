@@ -143,6 +143,7 @@ input[type='range']::-moz-range-thumb {
 
 /* BTN ADDED */
 
-.btnAdded {
+.btnAdded,
+.btnFinished {
   color: rgb(108, 159, 61);
 }
