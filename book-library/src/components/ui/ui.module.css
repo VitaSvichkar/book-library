@@ -97,7 +97,6 @@ input[type='range']::-moz-range-thumb {
 
 .wrapStar:hover,
 .wrapLabel:hover,
-.author:hover,
 .category:hover {
   background-color: #5f606441;
 }

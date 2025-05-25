@@ -23,7 +23,8 @@ export const Card = React.memo(
       if (
         e.target.closest(`.${c.author}`) ||
         e.target.closest(`.${c.categories}`) ||
-        e.target.closest(`.${c.wrapBtn}`)
+        e.target.closest(`.${c.wrapBtn}`) ||
+        e.target.closest(`.wrapLabel`)
       ) {
         return;
       }
@@ -65,7 +66,7 @@ export const Card = React.memo(
               <Category categories={categories} />
             </div>
 
-            {progressBar}
+            {progressBar && <div className="wrapLabel">{progressBar}</div>}
             {grade}
 
             <div className={c.wrapBtn}>{button(book)}</div>

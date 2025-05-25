@@ -22,7 +22,9 @@ export function MyLibrary() {
 
   const handleToggleFinish = useCallback(
     (book) => {
-      dispatch(toggleBookFinished(book.id));
+      book.isFinished
+        ? dispatch(toggleBookFinished({ id: book.id, value: false }))
+        : dispatch(toggleBookFinished({ id: book.id, value: true }));
     },
     [dispatch]
   );
@@ -56,7 +58,13 @@ export function MyLibrary() {
               <Card
                 key={book.id}
                 badge={<Badge status={status} />}
-                progressBar={<ProgressBar pages={book.volumeInfo?.pageCount} />}
+                progressBar={
+                  <ProgressBar
+                    id={book.id}
+                    isFinished={book.isFinished}
+                    pages={book.volumeInfo?.pageCount}
+                  />
+                }
                 grade={<Grade />}
                 button={renderButton}
                 book={book}

@@ -78,10 +78,6 @@
   line-height: 1.1;
 }
 
-.author:hover {
-  background-color: #5f606441;
-}
-
 .categories {
   display: flex;
   gap: 5px;
@@ -90,7 +86,8 @@
   transition: 0.2s ease all;
 }
 
-.categories:hover {
+.categories:hover,
+.author:hover {
   background-color: #5f606441;
 }
 

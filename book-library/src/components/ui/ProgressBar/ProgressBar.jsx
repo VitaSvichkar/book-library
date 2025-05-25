@@ -1,33 +1,50 @@
-import { useState } from 'react';
 import c from '../ui.module.css';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import {
+  setProgress,
+  toggleBookFinished,
+} from '../../../features/myBooksSlice';
 
-export function ProgressBar({ pages }) {
-  const [barState, setBarState] = useState({ width: 0, progress: 0 });
+export function ProgressBar({ id, pages, isFinished }) {
+  const [progress, setBarState] = useState(isFinished ? 100 : 0);
+  const savedValue = useRef(progress);
+  const dispatch = useDispatch();
+  const width = (progress / pages) * 100;
 
-  function handleSetProgress(e) {
-    const value = e.target.value;
-
-    setBarState((prevState) => ({
-      ...prevState,
-      width: (value / pages) * 100,
-      progress: value,
-    }));
+  function handleSetProgressLocal(e) {
+    setBarState(e.target.value);
   }
+
+  function handleSetProgressGlobal() {
+    savedValue.current = progress;
+
+    Number(progress) === pages
+      ? dispatch(toggleBookFinished({ id: id, value: true }))
+      : dispatch(toggleBookFinished({ id: id, value: false }));
+
+    dispatch(setProgress({ id: id, value: progress }));
+  }
+
+  useEffect(() => {
+    isFinished ? setBarState(pages) : setBarState(savedValue.current);
+  }, [isFinished, pages]);
 
   return (
     <div className={c.wrapLabel}>
       <label className={c.labelProgress}>
         <input
-          onChange={handleSetProgress}
+          onChange={handleSetProgressLocal}
+          onMouseUp={handleSetProgressGlobal}
           type="range"
           min="0"
           max={pages}
-          value={barState.progress}
+          value={progress}
         />
-        <div style={{ width: barState.width + '%' }}></div>
+        <div style={{ width: width + '%' }}></div>
       </label>
       <span>
-        {barState.progress}/{pages}
+        {progress}/{pages}
       </span>
     </div>
   );

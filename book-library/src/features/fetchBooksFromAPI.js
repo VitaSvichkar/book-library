@@ -46,6 +46,7 @@ export const fetchBooksFromAPI = async (
       isAdded: false,
       isFinished: false,
       status: '',
+      progress: 0,
     }));
 
     newBooks = [...newBooks, ...extendedBooks];
