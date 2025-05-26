@@ -7,7 +7,7 @@ import { Button } from '../ui/Button/Button';
 import { Aside } from '../Aside/Aside';
 import { MyLibraryNavigation } from '../MyLibraryNavigation/MyLibraryNavigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMyBooks, toggleBookFinished } from '../../features/myBooksSlice';
+import { getMyBooks, setFinish } from '../../features/myBooksSlice';
 import { useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckDouble, faCheck } from '@fortawesome/free-solid-svg-icons';
@@ -23,8 +23,8 @@ export function MyLibrary() {
   const handleToggleFinish = useCallback(
     (book) => {
       book.isFinished
-        ? dispatch(toggleBookFinished({ id: book.id, value: false }))
-        : dispatch(toggleBookFinished({ id: book.id, value: true }));
+        ? dispatch(setFinish({ id: book.id, value: false }))
+        : dispatch(setFinish({ id: book.id, value: true }));
     },
     [dispatch]
   );

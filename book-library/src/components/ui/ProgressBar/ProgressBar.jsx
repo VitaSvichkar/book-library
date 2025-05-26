@@ -1,10 +1,7 @@
 import c from '../ui.module.css';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  setProgress,
-  toggleBookFinished,
-} from '../../../features/myBooksSlice';
+import { setFinish, toggleBookFinished } from '../../../features/myBooksSlice';
 
 export function ProgressBar({ id, pages, isFinished }) {
   const [progress, setBarState] = useState(isFinished ? 100 : 0);
@@ -16,19 +13,30 @@ export function ProgressBar({ id, pages, isFinished }) {
     setBarState(e.target.value);
   }
 
+  function updateStateBook(newProgress) {
+    dispatch(
+      toggleBookFinished({
+        id: id,
+        progress: Number(newProgress),
+        pages: pages,
+      })
+    );
+  }
   function handleSetProgressGlobal() {
     savedValue.current = progress;
 
     Number(progress) === pages
-      ? dispatch(toggleBookFinished({ id: id, value: true }))
-      : dispatch(toggleBookFinished({ id: id, value: false }));
+      ? dispatch(setFinish({ id, value: true }))
+      : dispatch(setFinish({ id, value: false }));
 
-    dispatch(setProgress({ id: id, value: progress }));
+    updateStateBook(progress);
   }
 
   useEffect(() => {
-    isFinished ? setBarState(pages) : setBarState(savedValue.current);
-  }, [isFinished, pages]);
+    const value = isFinished ? pages : savedValue.current;
+    setBarState(value);
+    updateStateBook(value);
+  }, [isFinished]);
 
   return (
     <div className={c.wrapLabel}>

@@ -19,17 +19,12 @@ const myBooksSlices = createSlice({
       };
     },
 
-    toggleBookFinished: (state, action) => {
+    setFinish: (state, action) => {
       return {
         ...state,
         myBooks: state.myBooks.map((book) => {
-          const isFinished = action.payload.value;
           if (book.id === action.payload.id) {
-            return {
-              ...book,
-              isFinished,
-              status: isFinished ? 'completed' : '',
-            };
+            return { ...book, isFinished: action.payload.value };
           } else {
             return book;
           }
@@ -37,15 +32,30 @@ const myBooksSlices = createSlice({
       };
     },
 
-    setProgress: (state, action) => {
+    toggleBookFinished: (state, action) => {
       return {
         ...state,
         myBooks: state.myBooks.map((book) => {
           if (book.id === action.payload.id) {
-            return {
-              ...book,
-              progress: action.payload.value,
-            };
+            if (action.payload.progress === action.payload.pages) {
+              return {
+                ...book,
+                status: 'completed',
+                progress: action.payload.progress,
+              };
+            } else if (action.payload.progress === 0) {
+              return {
+                ...book,
+                status: '',
+                progress: action.payload.progress,
+              };
+            } else {
+              return {
+                ...book,
+                status: 'reading',
+                progress: action.payload.progress,
+              };
+            }
           } else {
             return book;
           }
@@ -61,6 +71,7 @@ export const {
   toggleBookFinished,
   setStatus,
   setProgress,
+  setFinish,
 } = myBooksSlices.actions;
 
 export function getMyBooks(state) {
