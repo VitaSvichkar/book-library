@@ -1,7 +1,5 @@
 import c from './myLibrary.module.css';
 import { Button } from '../ui/Button/Button';
-import { Aside } from '../Aside/Aside';
-import { MyLibraryNavigation } from '../MyLibraryNavigation/MyLibraryNavigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMyBooks, setFinish } from '../../features/myBooksSlice';
 import { useCallback } from 'react';
@@ -9,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckDouble, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { CardWrapper } from '../Card/CardWrapper';
 
-export function MyLibrary() {
+export function MyLibrary({ myLibraryNavigation }) {
   const myBooks = useSelector(getMyBooks);
   const dispatch = useDispatch();
 
@@ -40,9 +38,7 @@ export function MyLibrary() {
 
   return (
     <div className={c.wrap}>
-      <Aside>
-        <MyLibraryNavigation />
-      </Aside>
+      {myLibraryNavigation}
 
       <main className={c.wrapBooks}>
         {myBooks.length > 0 &&

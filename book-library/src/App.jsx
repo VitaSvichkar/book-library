@@ -1,6 +1,5 @@
 import './App.css';
 import { Catalog } from './components/Catalog/Catalog';
-import { Aside } from './components/Aside/Aside';
 import { Routes, Route } from 'react-router-dom';
 import { MyLibrary } from './components/MyLibrary/MyLibrary';
 import { Navigation } from './components/Navigation/Navigation';
@@ -21,7 +20,10 @@ function App() {
       </header>
 
       <Routes>
-        <Route path="/" element={<MyLibrary />}></Route>
+        <Route
+          path="/"
+          element={<MyLibrary myLibraryNavigation={<MyLibraryNavigation />} />}
+        ></Route>
         <Route path="catalog" element={<Catalog />} />
         <Route path="*" element="not found" />
       </Routes>
