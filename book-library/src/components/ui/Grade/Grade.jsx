@@ -1,16 +1,16 @@
 import c from '../ui.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-export function Grade() {
+export const Grade = React.memo(() => {
   const [stars, setStars] = useState(Array(5).fill(0));
 
   function handleSetGrade(ind) {
     setStars((prev) => {
       const newArr = Array(5)
         .fill(0)
-        .map((el, i) => {
+        .map((_, i) => {
           if (
             (ind === 0 || ind === i) &&
             prev[ind + 1] === 0 &&
@@ -32,7 +32,7 @@ export function Grade() {
         {stars.map((el, i) => {
           return (
             <span
-              onClick={() => handleSetGrade(i, el)}
+              onClick={() => handleSetGrade(i)}
               className={!el ? '' : c.starIco}
               key={i}
             >
@@ -43,4 +43,4 @@ export function Grade() {
       </div>
     </div>
   );
-}
+});

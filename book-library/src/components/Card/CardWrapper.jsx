@@ -1,0 +1,55 @@
+import { Card } from './Card';
+import { Badge } from '../ui/Badge/Badge';
+import React, { useMemo } from 'react';
+import { ProgressBar } from '../ui/ProgressBar/ProgressBar';
+import { Grade } from '../ui/Grade/Grade';
+
+export const CardWrapper = React.memo(
+  ({
+    book,
+    renderButton,
+    handleOpenModal,
+    handleSearchAuthor,
+    i,
+    isMyLibrary,
+  }) => {
+    console.log('CARD wrapper');
+
+    const status = getStatusClass(book.status);
+    const grade = isMyLibrary && <Grade />;
+
+    const badge = useMemo(
+      () => isMyLibrary && <Badge status={status} />,
+      [status]
+    );
+
+    const progressBar = useMemo(
+      () =>
+        isMyLibrary && (
+          <ProgressBar
+            id={book.id}
+            isFinished={book.isFinished}
+            pages={book.volumeInfo?.pageCount}
+          />
+        ),
+      [book.isFinished]
+    );
+
+    function getStatusClass(status) {
+      return status === 'reading' || status === 'completed' ? status : '';
+    }
+
+    return (
+      <Card
+        book={book}
+        renderButton={renderButton}
+        handleOpenModal={handleOpenModal}
+        handleSearchAuthor={handleSearchAuthor}
+        i={i}
+        badge={badge}
+        grade={grade}
+        progressBar={progressBar}
+      />
+    );
+  }
+);

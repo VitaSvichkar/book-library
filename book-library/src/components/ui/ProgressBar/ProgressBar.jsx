@@ -1,14 +1,14 @@
 import c from '../ui.module.css';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setFinish, toggleBookFinished } from '../../../features/myBooksSlice';
 
-export function ProgressBar({ id, pages, isFinished }) {
-  const [progress, setBarState] = useState(isFinished ? 100 : 0);
+export const ProgressBar = React.memo(({ id, pages, isFinished }) => {
+  const [progress, setBarState] = useState(0);
   const savedValue = useRef(progress);
   const dispatch = useDispatch();
   const width = (progress / pages) * 100;
-
+  console.log('progress');
   function handleSetProgressLocal(e) {
     setBarState(e.target.value);
   }
@@ -22,6 +22,7 @@ export function ProgressBar({ id, pages, isFinished }) {
       })
     );
   }
+
   function handleSetProgressGlobal() {
     savedValue.current = progress;
 
@@ -56,4 +57,4 @@ export function ProgressBar({ id, pages, isFinished }) {
       </span>
     </div>
   );
-}
+});

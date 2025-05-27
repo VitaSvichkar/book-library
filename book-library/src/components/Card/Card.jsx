@@ -1,14 +1,18 @@
-import { useDispatch } from 'react-redux';
-import { openModal } from '../../features/modalSlice';
 import { Category } from '../ui/Category/Category';
 import c from './card.module.css';
-import { fetchBooks } from '../../features/fetchBooks';
-import { setKeyword, setTypeQuery } from '../../features/searchSlice';
-import { setIsLoading } from '../../features/booksSlice';
 import React from 'react';
 
 export const Card = React.memo(
-  ({ badge, progressBar, grade, button, book, i }) => {
+  ({
+    badge,
+    progressBar,
+    grade,
+    renderButton,
+    book,
+    handleSearchAuthor,
+    handleOpenModal,
+    i,
+  }) => {
     const {
       volumeInfo: { authors, imageLinks, categories, title },
     } = book || {};
@@ -17,30 +21,19 @@ export const Card = React.memo(
 
     const sliceAuthors = authors?.slice(0, 2);
     const bookСover = imageLinks.smallThumbnail;
-    const dispatch = useDispatch();
 
-    function handleOpenModal(e, book) {
-      if (
-        e.target.closest(`.${c.author}`) ||
-        e.target.closest(`.${c.categories}`) ||
-        e.target.closest(`.${c.wrapBtn}`) ||
-        e.target.closest(`.wrapLabel`)
-      ) {
-        return;
-      }
-      dispatch(openModal(book));
-    }
-
-    function handleSearchAuthor(e, el) {
-      e.preventDefault();
-      dispatch(setIsLoading({ type: 'search', value: true }));
-      dispatch(setTypeQuery('author'));
-      dispatch(setKeyword(el));
-      dispatch(fetchBooks(el, 'author'));
-    }
+    const classes = {
+      author: c.author,
+      categories: c.categories,
+      wrapBtn: c.wrapBtn,
+      wrapLabel: 'wrapLabel',
+    };
 
     return (
-      <div className={c.wrap} onClick={(e) => handleOpenModal(e, book)}>
+      <div
+        className={c.wrap}
+        onClick={(e) => handleOpenModal(e, book, classes)}
+      >
         {badge}
 
         <div className={c.cardInfo}>
@@ -50,6 +43,7 @@ export const Card = React.memo(
 
           <div className={c.cardDescription}>
             <h2 title={title}>{title}</h2>
+
             <p className={c.authors}>
               {sliceAuthors?.map((el, i) => (
                 <span
@@ -69,7 +63,7 @@ export const Card = React.memo(
             {progressBar && <div className="wrapLabel">{progressBar}</div>}
             {grade}
 
-            <div className={c.wrapBtn}>{button(book)}</div>
+            <div className={c.wrapBtn}>{renderButton(book)}</div>
           </div>
         </div>
       </div>
