@@ -25,7 +25,7 @@ export function MyLibrary({ myLibraryNavigation }) {
       return (
         <Button
           onClick={() => handleToggleFinish(book)}
-          className={book.isFinished ? 'btnFinished' : 'btnFinish'}
+          className={book.isFinished && 'btnFinished'}
         >
           <FontAwesomeIcon icon={book.isFinished ? faCheckDouble : faCheck} />
         </Button>

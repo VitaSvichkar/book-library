@@ -125,7 +125,7 @@ input[type='range']::-moz-range-thumb {
 .btn {
   color: rgb(101, 102, 99);
   background-color: transparent;
-  padding: 5px;
+  padding: 7px;
   border-radius: 4px;
   font-size: 17px;
 }
@@ -145,4 +145,10 @@ input[type='range']::-moz-range-thumb {
 .btnAdded,
 .btnFinished {
   color: rgb(108, 159, 61);
+}
+
+/* BTN DELETE */
+
+.btnDelete:hover span {
+  color: rgb(21, 20, 20);
 }

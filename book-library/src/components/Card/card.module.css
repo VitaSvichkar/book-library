@@ -94,5 +94,8 @@
 /* BTN */
 
 .wrapBtn {
-  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
 }

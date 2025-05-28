@@ -11,6 +11,7 @@ export const Card = React.memo(
     book,
     handleSearchAuthor,
     handleOpenModal,
+    deleteBook,
     i,
   }) => {
     const {
@@ -63,7 +64,10 @@ export const Card = React.memo(
             {progressBar && <div className="wrapLabel">{progressBar}</div>}
             {grade}
 
-            <div className={c.wrapBtn}>{renderButton(book)}</div>
+            <div className={c.wrapBtn}>
+              <div>{renderButton(book)}</div>
+              <div>{deleteBook}</div>
+            </div>
           </div>
         </div>
       </div>
