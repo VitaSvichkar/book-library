@@ -1,73 +1,68 @@
 import { Card } from './Card';
-import { Badge } from '../ui/Badge/Badge';
-import React, { useMemo } from 'react';
-import { ProgressBar } from '../ui/ProgressBar/ProgressBar';
-import { Grade } from '../ui/Grade/Grade';
-import { Button } from '../ui/Button/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeBook } from '../../features/myBooksSlice';
-import { setIsAdded } from '../../features/booksSlice';
+import {
+  addBook,
+  removeBook,
+  setFinish,
+  setIsFavorite,
+} from '../../features/myBooksSlice';
+import { setIsAdded, setIsLoading } from '../../features/booksSlice';
+import { setKeyword, setTypeQuery } from '../../features/searchSlice';
+import { fetchBooks } from '../../features/fetchBooks';
 
 export const CardWrapper = React.memo(
-  ({
-    book,
-    renderButton,
-    handleOpenModal,
-    handleSearchAuthor,
-    i,
-    isMyLibrary,
-  }) => {
+  ({ book, handleOpenModal, i, isMyLibrary }) => {
     console.log('CARD wrapper');
-
     const dispatch = useDispatch();
-    const status = getStatusClass(book.status);
-    const grade = isMyLibrary && <Grade />;
 
-    const badge = useMemo(
-      () => isMyLibrary && <Badge status={status} />,
-      [status]
+    const handleSearchAuthor = useCallback(
+      (e, el) => {
+        console.log('search author');
+        e.preventDefault();
+        dispatch(setIsLoading({ type: 'search', value: true }));
+        dispatch(setTypeQuery('author'));
+        dispatch(setKeyword(el));
+        dispatch(fetchBooks(el, 'author'));
+      },
+      [dispatch]
     );
 
-    const progressBar = useMemo(
-      () =>
-        isMyLibrary && (
-          <ProgressBar
-            id={book.id}
-            isFinished={book.isFinished}
-            pages={book.volumeInfo?.pageCount}
-          />
-        ),
-      [book.isFinished]
-    );
+    const handleToggleFavorite = useCallback(() => {
+      console.log('toggle favorite');
+      dispatch(setIsFavorite(book.id));
+    }, [dispatch, book.id]);
 
-    function getStatusClass(status) {
-      return status === 'reading' || status === 'completed' ? status : '';
-    }
+    const handleToggleFinish = useCallback(() => {
+      console.log('toggle finish');
+      book.isFinished
+        ? dispatch(setFinish({ id: book.id, value: false }))
+        : dispatch(setFinish({ id: book.id, value: true }));
+    }, [dispatch, book.id, book.isFinished]);
 
-    function handleDeleteBook() {
+    const handleToggleAddBook = useCallback(() => {
+      console.log('toggle add book');
+      book.isAdded ? dispatch(removeBook(book.id)) : dispatch(addBook(book));
+      dispatch(setIsAdded(book.id));
+    }, [dispatch, book.id, book.isAdded, book]);
+
+    const handleDeleteBook = useCallback(() => {
+      console.log('delete book');
       dispatch(removeBook(book.id));
       dispatch(setIsAdded(book.id));
-    }
-
-    const deleteBook = isMyLibrary && (
-      <Button className="btnDelete" onClick={handleDeleteBook}>
-        <FontAwesomeIcon icon={faTrash} />
-      </Button>
-    );
+    }, [dispatch, book.id]);
 
     return (
       <Card
         book={book}
-        renderButton={renderButton}
         handleOpenModal={handleOpenModal}
         handleSearchAuthor={handleSearchAuthor}
+        handleDeleteBook={handleDeleteBook}
+        handleToggleFinish={handleToggleFinish}
+        handleToggleAddBook={handleToggleAddBook}
+        handleToggleFavorite={handleToggleFavorite}
         i={i}
-        badge={badge}
-        grade={grade}
-        progressBar={progressBar}
-        deleteBook={deleteBook}
+        isMyLibrary={isMyLibrary}
       />
     );
   }

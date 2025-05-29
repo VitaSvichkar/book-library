@@ -10,6 +10,13 @@
   cursor: pointer;
 }
 
+.bookActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
 .cardInfo {
   display: flex;
   flex-direction: column;
@@ -93,9 +100,52 @@
 
 /* BTN */
 
+.btn {
+  color: rgb(101, 102, 99);
+  background-color: transparent;
+  padding: 0 5px;
+  border-radius: 4px;
+  font-size: 17px;
+}
+
+.btn:hover {
+  color: rgb(153, 209, 101);
+}
+
+.btn svg {
+  transition: 0.2s ease all;
+}
+
+.btn:hover svg {
+  transform: scale(1.4);
+}
+
+.btn:active svg {
+  transform: scale(1);
+}
+
 .wrapBtn {
   display: flex;
   justify-content: space-between;
   width: 100%;
   gap: 10px;
+}
+
+.btnAddFavorites,
+.btnAddFavorites:hover {
+  color: rgb(233, 188, 100);
+}
+
+.btnAddFavorites:hover,
+.bthFavorite:hover {
+  color: rgb(223, 156, 21);
+}
+
+.btnDelete:hover {
+  color: rgb(21, 20, 20);
+}
+
+.btnFinished,
+.btnAdded {
+  color: rgb(108, 159, 61);
 }

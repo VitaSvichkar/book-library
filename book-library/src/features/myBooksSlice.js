@@ -32,6 +32,19 @@ const myBooksSlices = createSlice({
       };
     },
 
+    setIsFavorite: (state, action) => {
+      return {
+        ...state,
+        myBooks: state.myBooks.map((book) => {
+          if (book.id === action.payload) {
+            return { ...book, isFavorite: !book.isFavorite };
+          } else {
+            return book;
+          }
+        }),
+      };
+    },
+
     toggleBookFinished: (state, action) => {
       return {
         ...state,
@@ -72,6 +85,7 @@ export const {
   setStatus,
   setProgress,
   setFinish,
+  setIsFavorite,
 } = myBooksSlices.actions;
 
 export function getMyBooks(state) {
