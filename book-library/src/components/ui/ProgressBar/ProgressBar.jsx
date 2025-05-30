@@ -3,8 +3,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setFinish, toggleBookFinished } from '../../../features/myBooksSlice';
 
-export const ProgressBar = React.memo(({ id, pages, isFinished }) => {
-  const [progress, setBarState] = useState(0);
+export const ProgressBar = React.memo(({ id, pages, isFinished, book }) => {
+  const [progress, setBarState] = useState(book.progress);
   const savedValue = useRef(progress);
   const dispatch = useDispatch();
   const width = (progress / pages) * 100;
@@ -36,7 +36,10 @@ export const ProgressBar = React.memo(({ id, pages, isFinished }) => {
   useEffect(() => {
     const value = isFinished ? pages : savedValue.current;
     setBarState(value);
-    updateStateBook(value);
+
+    if (value !== book.progress) {
+      updateStateBook(value);
+    }
   }, [isFinished]);
 
   return (

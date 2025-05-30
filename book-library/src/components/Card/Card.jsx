@@ -92,6 +92,7 @@ export const Card = React.memo(
             {isMyLibrary && (
               <ProgressBar
                 id={book.id}
+                book={book}
                 isFinished={book.isFinished}
                 pages={book.volumeInfo?.pageCount}
               />
