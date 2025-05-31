@@ -39,7 +39,7 @@ export const Card = React.memo(
       author: c.author,
       categories: c.categories,
       wrapBtn: c.wrapBtn,
-      wrapLabel: 'wrapLabel',
+      btn: c.btn,
     };
 
     const status = getStatusClass(book.status);
@@ -102,20 +102,16 @@ export const Card = React.memo(
             {isMyLibrary && <Grade />}
 
             <div className={c.wrapBtn}>
-              <div>
-                {isMyLibrary && (
-                  <button
-                    onClick={() => handleToggleFinish(book)}
-                    className={`${c.btn} ${
-                      book.isFinished ? c.btnFinished : ''
-                    }`}
-                  >
-                    <FontAwesomeIcon
-                      icon={book.isFinished ? faCheckDouble : faCheck}
-                    />
-                  </button>
-                )}
-              </div>
+              {isMyLibrary && (
+                <button
+                  onClick={() => handleToggleFinish(book)}
+                  className={`${c.btn} ${book.isFinished ? c.btnFinished : ''}`}
+                >
+                  <FontAwesomeIcon
+                    icon={book.isFinished ? faCheckDouble : faCheck}
+                  />
+                </button>
+              )}
 
               {isMyLibrary ? (
                 <button

@@ -24,7 +24,7 @@ export function Catalog() {
       if (
         e.target.closest(`.${c.author}`) ||
         e.target.closest(`.${c.categories}`) ||
-        e.target.closest(`.${c.wrapBtn}`) ||
+        e.target.closest(`.${c.btn}`) ||
         e.target.closest(`.${c.wrapLabel}`)
       ) {
         return;
