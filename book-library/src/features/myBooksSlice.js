@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   myBooks: [],
+  filter: '',
 };
 
 const myBooksSlices = createSlice({
@@ -45,6 +46,10 @@ const myBooksSlices = createSlice({
       };
     },
 
+    setFilterType: (state, action) => {
+      return { ...state, filter: action.payload };
+    },
+
     toggleBookFinished: (state, action) => {
       return {
         ...state,
@@ -86,9 +91,14 @@ export const {
   setProgress,
   setFinish,
   setIsFavorite,
+  setFilterType,
 } = myBooksSlices.actions;
 
 export function getMyBooks(state) {
   return state.myBooks.myBooks;
+}
+
+export function getFilterType(state) {
+  return state.myBooks.filter;
 }
 export default myBooksSlices;

@@ -1,11 +1,12 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import c from './myLibraryNavigation.module.css';
+import { getFilterType } from '../../features/myBooksSlice';
+import { useSelector } from 'react-redux';
 
 export function MyLibraryNavigation() {
   console.log('Navig');
-  const location = useLocation();
-  const query = new URLSearchParams(location.search);
-  const filter = query.get('filter');
+  const filter = useSelector(getFilterType);
+
   const navigationLinks = [
     {
       title: 'All books',
