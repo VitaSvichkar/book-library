@@ -23,6 +23,7 @@ export const Card = React.memo(
     handleToggleAddBook,
     handleToggleFavorite,
     isMyLibrary,
+    limitBooks,
     i,
   }) => {
     const {
@@ -125,6 +126,7 @@ export const Card = React.memo(
                 </button>
               ) : (
                 <button
+                  disabled={limitBooks && !book.isAdded}
                   onClick={() => handleToggleAddBook(book)}
                   className={`${c.btn} ${book.isAdded ? c.btnAdded : ''}`}
                 >

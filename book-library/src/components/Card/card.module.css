@@ -108,6 +108,18 @@
   font-size: 17px;
 }
 
+.btn:disabled {
+  cursor: default;
+}
+
+.btn:disabled:hover {
+  color: rgb(101, 102, 99);
+}
+
+.btn:disabled:hover svg {
+  transform: scale(1);
+}
+
 .btn:hover {
   color: rgb(153, 209, 101);
 }

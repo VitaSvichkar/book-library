@@ -9,11 +9,15 @@ import { Search } from '../Search/Search';
 import { useCallback } from 'react';
 import LoadMoreButton from '../LoadMoreButton/LoadMoreButton';
 import { openModal } from '../../features/modalSlice';
+import { getMyBooks } from '../../features/myBooksSlice';
 
 export function Catalog() {
+  console.log('catalog');
   const { books, buffer, isLoading } = useSelector(getBooksState);
   const keyword = useSelector(getKeyword);
   const dispatch = useDispatch();
+  const myBooks = useSelector(getMyBooks);
+  const limitBooks = myBooks.length >= 50;
 
   const handleOpenModal = useCallback(
     (e, book, c) => {
@@ -39,6 +43,12 @@ export function Catalog() {
     <>
       <Search />
       <main className={c.main}>
+        {limitBooks && books.length > 0 && (
+          <div className={c.limitMessage}>
+            Looks like you've reached the 50-book limit! We’re working on
+            letting you add more soon! 😸
+          </div>
+        )}
         {books.length > 0 && (
           <div className={c.wrap}>
             <div className={c.books}>
@@ -50,6 +60,7 @@ export function Catalog() {
                     i={i}
                     handleOpenModal={handleOpenModal}
                     isMyLibrary={false}
+                    {...(limitBooks ? { limitBooks } : {})}
                   />
                 );
               })}

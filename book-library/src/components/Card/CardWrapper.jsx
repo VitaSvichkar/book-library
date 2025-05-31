@@ -12,7 +12,7 @@ import { setKeyword, setTypeQuery } from '../../features/searchSlice';
 import { fetchBooks } from '../../features/fetchBooks';
 
 export const CardWrapper = React.memo(
-  ({ book, handleOpenModal, i, isMyLibrary }) => {
+  ({ book, handleOpenModal, i, isMyLibrary, limitBooks }) => {
     console.log('CARD wrapper');
     const dispatch = useDispatch();
 
@@ -41,10 +41,13 @@ export const CardWrapper = React.memo(
     }, [dispatch, book.id, book.isFinished]);
 
     const handleToggleAddBook = useCallback(() => {
-      console.log('toggle add book');
+      if (limitBooks && !book.isAdded) {
+        return;
+      }
+
       book.isAdded ? dispatch(removeBook(book.id)) : dispatch(addBook(book));
       dispatch(setIsAdded(book.id));
-    }, [dispatch, book.id, book.isAdded, book]);
+    }, [dispatch, book.id, book.isAdded, limitBooks]);
 
     const handleDeleteBook = useCallback(() => {
       console.log('delete book');
@@ -61,6 +64,7 @@ export const CardWrapper = React.memo(
         handleToggleFinish={handleToggleFinish}
         handleToggleAddBook={handleToggleAddBook}
         handleToggleFavorite={handleToggleFavorite}
+        limitBooks={limitBooks}
         i={i}
         isMyLibrary={isMyLibrary}
       />
