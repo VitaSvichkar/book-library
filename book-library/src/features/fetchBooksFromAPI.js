@@ -47,6 +47,7 @@ export const fetchBooksFromAPI = async (
       isFinished: false,
       isFavorite: false,
       status: '',
+      review: '',
       progress: 0,
     }));
 

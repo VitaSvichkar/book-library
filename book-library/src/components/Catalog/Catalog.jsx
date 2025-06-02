@@ -10,6 +10,7 @@ import { useCallback } from 'react';
 import LoadMoreButton from '../LoadMoreButton/LoadMoreButton';
 import { openModal } from '../../features/modalSlice';
 import { getMyBooks } from '../../features/myBooksSlice';
+import { checkIgnoreModalClick } from '../../utils/checkIgnoreModalClick';
 
 export function Catalog() {
   console.log('catalog');
@@ -21,15 +22,9 @@ export function Catalog() {
 
   const handleOpenModal = useCallback(
     (e, book, c) => {
-      if (
-        e.target.closest(`.${c.author}`) ||
-        e.target.closest(`.${c.categories}`) ||
-        e.target.closest(`.${c.btn}`) ||
-        e.target.closest(`.${c.wrapLabel}`)
-      ) {
-        return;
+      if (checkIgnoreModalClick(e, c)) {
+        dispatch(openModal({ type: 'CATALOG', book: book }));
       }
-      dispatch(openModal(book));
     },
     [dispatch]
   );

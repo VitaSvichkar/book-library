@@ -5,20 +5,14 @@ import { MyLibrary } from './components/MyLibrary/MyLibrary';
 import { Navigation } from './components/Navigation/Navigation';
 import { Search } from './components/Search/Search';
 import { MyLibraryNavigation } from './components/MyLibraryNavigation/MyLibraryNavigation';
-import { useSelector } from 'react-redux';
-import { Modal } from './components/Modal/Modal';
-import { getSelectedBook } from './features/modalSlice';
+import { ModalWrapper } from './components/Modal/ModalWrapper';
 
 function App() {
-  // const path = useLocation();
-  const selectedBook = useSelector(getSelectedBook);
-
   return (
     <div className="wrap">
       <header>
         <Navigation />
       </header>
-
       <Routes>
         <Route
           path="/"
@@ -27,8 +21,7 @@ function App() {
         <Route path="catalog" element={<Catalog />} />
         <Route path="*" element="not found" />
       </Routes>
-
-      {selectedBook && <Modal book={selectedBook} />}
+      <ModalWrapper />
     </div>
   );
 }

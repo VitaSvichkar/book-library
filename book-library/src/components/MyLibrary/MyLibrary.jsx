@@ -2,8 +2,10 @@ import c from './myLibrary.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMyBooks, setFilterType } from '../../features/myBooksSlice';
 import { CardWrapper } from '../Card/CardWrapper';
-import { useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
+import { checkIgnoreModalClick } from '../../utils/checkIgnoreModalClick';
+import { openModal } from '../../features/modalSlice';
 
 export function MyLibrary({ myLibraryNavigation }) {
   const myBooks = useSelector(getMyBooks);
@@ -11,6 +13,15 @@ export function MyLibrary({ myLibraryNavigation }) {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const filter = query.get('filter');
+
+  const handleOpenModal = useCallback(
+    (e, book, c) => {
+      if (checkIgnoreModalClick(e, c)) {
+        dispatch(openModal({ type: 'LIBRARY', book: book }));
+      }
+    },
+    [dispatch]
+  );
 
   console.log('my library');
 
@@ -39,7 +50,13 @@ export function MyLibrary({ myLibraryNavigation }) {
         {filteredBooks.length > 0 &&
           filteredBooks.map((book, i) => {
             return (
-              <CardWrapper key={book.id} book={book} i={i} isMyLibrary={true} />
+              <CardWrapper
+                key={book.id}
+                book={book}
+                i={i}
+                isMyLibrary={true}
+                handleOpenModal={handleOpenModal}
+              />
             );
           })}
       </main>

@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  selectedBook: null,
+  modal: {
+    type: null,
+    selectedBook: null,
+  },
 };
 
 const modalSlice = createSlice({
@@ -9,16 +12,31 @@ const modalSlice = createSlice({
   initialState,
   reducers: {
     openModal: (state, action) => {
-      state.selectedBook = action.payload;
+      return {
+        ...state,
+        modal: {
+          ...state.modal,
+          type: action.payload.type,
+          selectedBook: action.payload.book,
+        },
+      };
     },
+
     closeModal: (state) => {
-      state.selectedBook = null;
+      return {
+        ...state,
+        modal: {
+          ...state.modal,
+          type: null,
+          selectedBook: null,
+        },
+      };
     },
   },
 });
 
 export const { openModal, closeModal } = modalSlice.actions;
-export function getSelectedBook(state) {
-  return state.modal.selectedBook;
+export function getStateModal(state) {
+  return state.modal.modal;
 }
 export default modalSlice;

@@ -50,6 +50,19 @@ const myBooksSlices = createSlice({
       return { ...state, filter: action.payload };
     },
 
+    setReview: (state, action) => {
+      return {
+        ...state,
+        myBooks: state.myBooks.map((book) => {
+          if (book.id === action.payload.id) {
+            return { ...book, review: action.payload.review };
+          } else {
+            return book;
+          }
+        }),
+      };
+    },
+
     toggleBookFinished: (state, action) => {
       return {
         ...state,
@@ -90,6 +103,7 @@ export const {
   setStatus,
   setProgress,
   setFinish,
+  setReview,
   setIsFavorite,
   setFilterType,
 } = myBooksSlices.actions;
