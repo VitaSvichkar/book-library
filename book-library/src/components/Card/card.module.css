@@ -85,7 +85,9 @@
   line-height: 1.1;
 }
 
-.categories {
+.categories,
+.wrapLabel,
+.wrapStar {
   display: flex;
   gap: 5px;
   padding: 5px;
@@ -94,8 +96,19 @@
 }
 
 .categories:hover,
-.author:hover {
+.author:hover,
+.wrapLabel:hover,
+.wrapStar:hover {
   background-color: #5f606441;
+}
+
+/* PROGRESS BAR */
+
+.wrapLabel {
+  height: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 /* BTN */

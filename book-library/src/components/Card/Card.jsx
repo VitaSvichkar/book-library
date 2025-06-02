@@ -38,7 +38,8 @@ export const Card = React.memo(
     const classes = {
       author: c.author,
       categories: c.categories,
-      wrapBtn: c.wrapBtn,
+      wrapLabel: c.wrapLabel,
+      wrapStar: c.wrapStar,
       btn: c.btn,
     };
 
@@ -91,15 +92,21 @@ export const Card = React.memo(
             </div>
 
             {isMyLibrary && (
-              <ProgressBar
-                id={book.id}
-                book={book}
-                isFinished={book.isFinished}
-                pages={book.volumeInfo?.pageCount}
-              />
+              <div className={c.wrapLabel}>
+                <ProgressBar
+                  id={book.id}
+                  book={book}
+                  isFinished={book.isFinished}
+                  pages={book.volumeInfo?.pageCount}
+                />
+              </div>
             )}
 
-            {isMyLibrary && <Grade />}
+            {isMyLibrary && (
+              <div className={c.wrapStar}>
+                <Grade />
+              </div>
+            )}
 
             <div className={c.wrapBtn}>
               {isMyLibrary && (

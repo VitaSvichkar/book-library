@@ -38,13 +38,6 @@
 
 /* PROGRESS BAR */
 
-.wrapLabel {
-  height: 25px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
 .labelProgress {
   position: relative;
   background-color: #254c2f;
@@ -88,35 +81,22 @@ input[type='range']::-moz-range-thumb {
   cursor: pointer;
 }
 
-.wrapStar,
-.wrapLabel {
-  padding: 5px;
-  border-radius: 4px;
-  transition: 0.3s ease all;
-}
-
-.wrapStar:hover,
-.wrapLabel:hover,
-.category:hover {
-  background-color: #5f606441;
-}
-
 /* GRADE */
 
-.wrapStar div {
+.wrap {
   display: inline-block;
   background-color: #6e6f7a41;
   border-radius: 4px;
   padding: 0 5px;
 }
 
-.wrapStar span {
+.wrap span {
   color: rgb(117, 117, 117);
   display: inline-block;
   padding-top: 1px;
 }
 
-.wrapStar .starIco {
+.wrap .starIco {
   color: rgb(239, 202, 82);
 }
 

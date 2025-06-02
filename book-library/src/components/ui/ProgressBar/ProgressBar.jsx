@@ -43,7 +43,7 @@ export const ProgressBar = React.memo(({ id, pages, isFinished, book }) => {
   }, [isFinished]);
 
   return (
-    <div className={c.wrapLabel}>
+    <>
       <label className={c.labelProgress}>
         <input
           onChange={handleSetProgressLocal}
@@ -58,6 +58,6 @@ export const ProgressBar = React.memo(({ id, pages, isFinished, book }) => {
       <span>
         {progress}/{pages}
       </span>
-    </div>
+    </>
   );
 });

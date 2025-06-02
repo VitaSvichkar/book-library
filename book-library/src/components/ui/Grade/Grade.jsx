@@ -27,20 +27,18 @@ export const Grade = React.memo(() => {
   }
 
   return (
-    <div className={c.wrapStar}>
-      <div>
-        {stars.map((el, i) => {
-          return (
-            <span
-              onClick={() => handleSetGrade(i)}
-              className={!el ? '' : c.starIco}
-              key={i}
-            >
-              <FontAwesomeIcon icon={faStar} />
-            </span>
-          );
-        })}
-      </div>
+    <div className={c.wrap}>
+      {stars.map((el, i) => {
+        return (
+          <span
+            onClick={() => handleSetGrade(i)}
+            className={!el ? '' : c.starIco}
+            key={i}
+          >
+            <FontAwesomeIcon icon={faStar} />
+          </span>
+        );
+      })}
     </div>
   );
 });
