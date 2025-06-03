@@ -14,7 +14,7 @@
   transition: 0.3s ease all;
 }
 
-.active,
-.link:hover {
-  color: rgb(108, 116, 220);
+.link:hover,
+.active {
+  color: rgb(213, 168, 64);
 }

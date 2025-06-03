@@ -27,7 +27,7 @@ export function MyLibraryNavigation() {
 
   function getLinkClass(query) {
     const isActive = query ? query === filter : !filter;
-    return isActive ? c.active : '';
+    return isActive ? c.active : c.link;
   }
 
   return (
