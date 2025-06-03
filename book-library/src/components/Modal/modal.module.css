@@ -60,6 +60,11 @@
   border-collapse: collapse;
 }
 
+.bookMeta a {
+  color: rgb(11, 57, 209);
+  text-decoration: underline;
+}
+
 .bookMeta th,
 td {
   padding: 3px;
@@ -74,6 +79,7 @@ td {
 .bookMeta td {
   padding-left: 10px;
   text-align: right;
+  text-transform: capitalize;
 }
 
 .aboutBook p {

@@ -54,6 +54,7 @@
   flex: 1;
   gap: 5px;
   font-size: 13px;
+  text-transform: capitalize;
 }
 
 .cardDescription h2 {

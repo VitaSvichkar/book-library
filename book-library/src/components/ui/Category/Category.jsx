@@ -24,7 +24,7 @@ export function Category({ categories }) {
               onClick={(e) => handleSearchCategory(e, category)}
               key={i}
             >
-              {category}
+              {category.toLowerCase()}
             </span>
           ))
         : ''}

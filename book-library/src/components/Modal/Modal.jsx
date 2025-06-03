@@ -41,14 +41,14 @@ export function Modal({ book }) {
                 {authors.length > 0 && (
                   <tr>
                     <th>Author</th>
-                    <td>{authors.join(', ')}</td>
+                    <td>{authors.join(', ').toLowerCase()}</td>
                   </tr>
                 )}
 
                 {publisher && (
                   <tr>
                     <th>Publisher</th>
-                    <td>{publisher}</td>
+                    <td>{publisher.toLowerCase()}</td>
                   </tr>
                 )}
 
