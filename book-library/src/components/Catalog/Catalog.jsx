@@ -16,8 +16,8 @@ export function Catalog() {
   console.log('catalog');
   const { books, buffer, isLoading } = useSelector(getBooksState);
   const keyword = useSelector(getKeyword);
-  const dispatch = useDispatch();
   const myBooks = useSelector(getMyBooks);
+  const dispatch = useDispatch();
   const limitBooks = myBooks.length >= 50;
 
   const handleOpenModal = useCallback(
@@ -32,7 +32,7 @@ export function Catalog() {
   const handleLoadData = useCallback(() => {
     dispatch(setIsLoading({ type: 'loadMore', value: true }));
     dispatch(loadMoreBooks(keyword));
-  }, [dispatch]);
+  }, [dispatch, keyword]);
 
   return (
     <>
