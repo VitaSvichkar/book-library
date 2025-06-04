@@ -35,11 +35,18 @@ export const fetchBooksFromAPI = async (
 
     const data = res.data.items || [];
 
-    const filteredData = data.filter(
-      (el) =>
-        el.volumeInfo.imageLinks &&
-        (el.volumeInfo.description && el.volumeInfo.description.length) > 30
-    );
+    const filteredData = data.filter((el) => {
+      const isDuplicate = newBooks.some((book) => book.id === el.id);
+      const { imageLinks, description, pageCount } = el.volumeInfo || {};
+
+      return (
+        imageLinks &&
+        typeof description === 'string' &&
+        description.length > 30 &&
+        pageCount > 0 &&
+        !isDuplicate
+      );
+    });
 
     const extendedBooks = filteredData.map((book) => ({
       ...book,
