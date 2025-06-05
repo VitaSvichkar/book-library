@@ -94,6 +94,15 @@ input[type='range']::-moz-range-thumb {
   color: rgb(117, 117, 117);
   display: inline-block;
   padding-top: 1px;
+  transition: 0.2s ease all;
+}
+
+.wrap span:hover {
+  transform: scale(1.2);
+}
+
+.wrap span:active {
+  transform: scale(1);
 }
 
 .wrap .starIco {

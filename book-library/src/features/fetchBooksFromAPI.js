@@ -56,6 +56,7 @@ export const fetchBooksFromAPI = async (
       status: '',
       review: '',
       progress: 0,
+      grade: null,
     }));
 
     newBooks = [...newBooks, ...extendedBooks];

@@ -94,7 +94,7 @@ export const Card = React.memo((props) => {
 
           {props.isMyLibrary && (
             <div className={c.wrapStar}>
-              <Grade />
+              <Grade grade={props.book.grade} id={props.book.id} />
             </div>
           )}
 

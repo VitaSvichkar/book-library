@@ -63,6 +63,19 @@ const myBooksSlices = createSlice({
       };
     },
 
+    setGrade: (state, action) => {
+      return {
+        ...state,
+        myBooks: state.myBooks.map((book) => {
+          if (book.id === action.payload.id) {
+            return { ...book, grade: action.payload.grade };
+          } else {
+            return book;
+          }
+        }),
+      };
+    },
+
     toggleBookFinished: (state, action) => {
       return {
         ...state,
@@ -104,6 +117,7 @@ export const {
   setProgress,
   setFinish,
   setReview,
+  setGrade,
   setIsFavorite,
   setFilterType,
 } = myBooksSlices.actions;
@@ -115,4 +129,5 @@ export function getMyBooks(state) {
 export function getFilterType(state) {
   return state.myBooks.filter;
 }
+
 export default myBooksSlices;
