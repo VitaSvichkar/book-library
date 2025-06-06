@@ -15,6 +15,7 @@
 .modal {
   display: flex;
   flex-direction: column;
+
   gap: 10px;
   background-color: #ffffff;
   color: black;
@@ -120,7 +121,19 @@ td {
 /* modal my library */
 
 .form {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.messageInfo {
+  color: rgb(108, 159, 61);
+  align-self: center;
+  display: flex;
+  cursor: default;
+  font-size: 22px;
+  background-color: transparent;
 }
 
 .textarea {
@@ -130,29 +143,26 @@ td {
   padding: 0 5px;
   font-size: 17px;
   background-color: transparent;
-  border-color: rgb(232, 232, 232);
-  color: black;
+  border-color: rgb(243, 243, 243);
+  color: rgb(82, 82, 82);
 }
 
 .textarea:focus {
   outline: none;
-  background-color: #f0f0f0;
+  background-color: #f2f2f2;
   border-color: rgb(235, 235, 235);
+  color: rgb(0, 0, 0);
 }
 
 .btnSave {
-  /* align-self: center; */
   background-color: rgb(102, 51, 153);
-  padding: 3px 5px;
-  transition: 0.2s ease all;
+  padding: 3px 10px;
+  border-radius: 3px;
+  transition: 0.2s ease background-color;
 }
 
 .btnSave:hover {
   background-color: rgb(80, 37, 123);
-}
-
-.btnSave:active {
-  background-color: rgb(58, 24, 91);
 }
 
 .btnSave:disabled {
