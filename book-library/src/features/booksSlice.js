@@ -2,15 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   books: [],
-  totalItems: 0,
   maxResult: 12,
   startIndex: 0,
-  attempts: 0,
   buffer: [],
-  isLoading: {
-    search: false,
-    loadMore: false,
-  },
 };
 
 const booksSlice = createSlice({
@@ -23,11 +17,6 @@ const booksSlice = createSlice({
 
     clearBooks: (state) => {
       return { ...state, books: [] };
-    },
-
-    setIsLoading: (state, action) => {
-      const { type, value } = action.payload;
-      return { ...state, isLoading: { ...state.isLoading, [type]: value } };
     },
 
     setIsAdded: (state, action) => {
@@ -53,14 +42,8 @@ const booksSlice = createSlice({
   },
 });
 
-export const {
-  setBooks,
-  clearBooks,
-  setStartIndex,
-  setBuffer,
-  setIsLoading,
-  setIsAdded,
-} = booksSlice.actions;
+export const { setBooks, clearBooks, setStartIndex, setBuffer, setIsAdded } =
+  booksSlice.actions;
 
 export function getBooksState(state) {
   return state.books;

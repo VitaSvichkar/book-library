@@ -7,25 +7,31 @@ import {
   setFinish,
   setIsFavorite,
 } from '../../features/myBooksSlice';
-import { setIsAdded, setIsLoading } from '../../features/booksSlice';
+import { setIsAdded } from '../../features/booksSlice';
 import { setKeyword, setTypeQuery } from '../../features/searchSlice';
 import { fetchBooks } from '../../features/fetchBooks';
 
 export const CardWrapper = React.memo(
-  ({ book, handleOpenModal, i, isMyLibrary, limitBooks }) => {
+  ({ book, handleOpenModal, i, isMyLibrary, limitBooks, setIsLoading }) => {
     console.log('CARD wrapper');
     const dispatch = useDispatch();
 
     const handleSearchAuthor = useCallback(
-      (e, el) => {
+      async (e, el) => {
         console.log('search author');
         e.preventDefault();
-        dispatch(setIsLoading({ type: 'search', value: true }));
-        dispatch(setTypeQuery('author'));
-        dispatch(setKeyword(el));
-        dispatch(fetchBooks(el, 'author'));
+        setIsLoading(true);
+
+        try {
+          dispatch(setTypeQuery('author'));
+          dispatch(setKeyword(el));
+          await dispatch(fetchBooks(el, 'author'));
+          setIsLoading(false);
+        } catch (error) {
+          console.log(error);
+        }
       },
-      [dispatch]
+      [dispatch, setIsLoading]
     );
 
     const handleToggleFavorite = useCallback(() => {
@@ -65,6 +71,7 @@ export const CardWrapper = React.memo(
         handleToggleAddBook={handleToggleAddBook}
         handleToggleFavorite={handleToggleFavorite}
         limitBooks={limitBooks}
+        setIsLoading={setIsLoading}
         i={i}
         isMyLibrary={isMyLibrary}
       />

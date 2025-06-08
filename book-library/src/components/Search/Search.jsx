@@ -1,41 +1,44 @@
 import c from './search.module.css';
-import {
-  getKeyword,
-  getType,
-  setKeyword,
-  setLastKeyword,
-  setTypeQuery,
-} from '../../features/searchSlice';
+import { getType, setKeyword, setTypeQuery } from '../../features/searchSlice';
 import { fetchBooks } from '../../features/fetchBooks';
-import { getBooksState, setIsLoading } from '../../features/booksSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import { Loading } from '../ui/Loading/Loading';
+import React, { useState } from 'react';
 
-export function Search() {
-  const keyword = useSelector(getKeyword);
-  const { books, isLoading } = useSelector(getBooksState);
+export const Search = React.memo(({ setIsLoading, setIsRequest }) => {
+  console.log('search');
+  const [words, setWords] = useState({ keyword: '', lastKeyword: '' });
   const type = useSelector(getType);
   const dispatch = useDispatch();
-  const [isRequest, setIsRequest] = useState(false);
 
   function handleSetValue(e) {
-    dispatch(setKeyword(e.target.value));
+    setWords((prev) => ({ ...prev, keyword: e.target.value }));
   }
 
   function handleSetSearchType(value) {
-    dispatch(setLastKeyword(''));
+    setWords((prev) => ({ ...prev, keyword: '', lastKeyword: '' }));
     dispatch(setTypeQuery(value));
   }
 
-  function handleSetFetch(e) {
+  async function handleSetFetch(e) {
     const formData = new FormData(e.target);
     const currentType = formData.get('searchType');
     e.preventDefault();
-    dispatch(setIsLoading({ type: 'search', value: true }));
-    dispatch(fetchBooks(keyword, currentType));
-    dispatch(setTypeQuery(currentType));
-    setIsRequest(true);
+
+    try {
+      if (words.lastKeyword === words.keyword) {
+        return;
+      } else {
+        setIsLoading(true);
+        setWords((prev) => ({ ...prev, lastKeyword: prev.keyword }));
+        await dispatch(fetchBooks(words.keyword, currentType));
+        dispatch(setKeyword(words.keyword));
+        dispatch(setTypeQuery(currentType));
+        setIsRequest(true);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function placeholderText() {
@@ -73,19 +76,13 @@ export function Search() {
             maxLength="70"
             placeholder={placeholderText()}
             autoFocus
-            value={keyword}
+            value={words.keyword}
           />
           <button>
             <img src="../public/ico-search.png" alt="#" width="25" />
           </button>
         </div>
       </form>
-      {isLoading.search && <Loading />}
-      {isRequest && !isLoading.search && books.length < 1 && (
-        <p className={c.infoMessage}>
-          We couldn't find anything. Maybe try another keyword? 😸
-        </p>
-      )}
     </>
   );
-}
+});

@@ -1,33 +1,37 @@
-import { useDispatch } from 'react-redux';
 import c from './category.module.css';
+import { useDispatch } from 'react-redux';
 import { fetchBooks } from '../../../features/fetchBooks';
 import { setKeyword, setTypeQuery } from '../../../features/searchSlice';
-import { setIsLoading } from '../../../features/booksSlice';
 
-export function Category({ categories }) {
+export function Category({ categories, setIsLoading }) {
   const dispatch = useDispatch();
 
-  function handleSearchCategory(e, category) {
+  async function handleSearchCategory(e, category) {
     e.preventDefault();
-    dispatch(setIsLoading({ type: 'search', value: true }));
-    dispatch(setTypeQuery('category'));
-    dispatch(setKeyword(category));
-    dispatch(fetchBooks(category, 'category'));
+    setIsLoading(true);
+
+    try {
+      dispatch(setTypeQuery('category'));
+      dispatch(setKeyword(category));
+      await dispatch(fetchBooks(category, 'category'));
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
     <>
-      {categories
-        ? categories.map((category, i) => (
-            <span
-              className={c.category}
-              onClick={(e) => handleSearchCategory(e, category)}
-              key={i}
-            >
-              {category.toLowerCase()}
-            </span>
-          ))
-        : ''}
+      {categories &&
+        categories.map((category, i) => (
+          <span
+            className={c.category}
+            onClick={(e) => handleSearchCategory(e, category)}
+            key={i}
+          >
+            {category.toLowerCase()}
+          </span>
+        ))}
     </>
   );
 }

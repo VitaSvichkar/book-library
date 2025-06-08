@@ -77,7 +77,10 @@ export const Card = React.memo((props) => {
 
           {!props.isMyLibrary && (
             <div className={c.categories}>
-              <Category categories={categories} />
+              <Category
+                categories={categories}
+                setIsLoading={props.setIsLoading}
+              />
             </div>
           )}
 

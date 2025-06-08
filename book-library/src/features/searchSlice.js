@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   keyword: '',
-  lastKeyword: '',
   queryType: 'author',
 };
 
@@ -12,10 +11,6 @@ const searchSlice = createSlice({
   reducers: {
     setKeyword: (state, action) => {
       return { ...state, keyword: action.payload };
-    },
-
-    setLastKeyword: (state, action) => {
-      return { ...state, lastKeyword: action.payload };
     },
 
     setTypeQuery: (state, action) => {

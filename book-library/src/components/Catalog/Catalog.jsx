@@ -1,12 +1,12 @@
 import c from './catalog.module.css';
 import { CardWrapper } from '../Card/CardWrapper';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBooksState, setIsLoading } from '../../features/booksSlice';
+import { getBooksState } from '../../features/booksSlice';
 import { getKeyword } from '../../features/searchSlice';
 import { loadMoreBooks } from '../../features/loadMoreBooks';
 import { Loading } from '../ui/Loading/Loading';
 import { Search } from '../Search/Search';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import LoadMoreButton from '../LoadMoreButton/LoadMoreButton';
 import { openModal } from '../../features/modalSlice';
 import { getMyBooks } from '../../features/myBooksSlice';
@@ -14,7 +14,10 @@ import { checkIgnoreModalClick } from '../../utils/checkIgnoreModalClick';
 
 export function Catalog() {
   console.log('catalog');
-  const { books, buffer, isLoading } = useSelector(getBooksState);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isRequest, setIsRequest] = useState(false);
+
+  const { books, buffer } = useSelector(getBooksState);
   const keyword = useSelector(getKeyword);
   const myBooks = useSelector(getMyBooks);
   const dispatch = useDispatch();
@@ -29,14 +32,23 @@ export function Catalog() {
     [dispatch]
   );
 
-  const handleLoadData = useCallback(() => {
-    dispatch(setIsLoading({ type: 'loadMore', value: true }));
-    dispatch(loadMoreBooks(keyword));
+  const handleLoadData = useCallback(async () => {
+    setIsLoading(true);
+    await dispatch(loadMoreBooks(keyword));
+    setIsLoading(false);
   }, [dispatch, keyword]);
 
   return (
     <>
-      <Search />
+      <Search setIsLoading={setIsLoading} setIsRequest={setIsRequest} />
+
+      {isLoading && <Loading />}
+      {isRequest && !isLoading && books.length < 1 && (
+        <p className={c.infoMessage}>
+          We couldn't find anything. Maybe try another keyword? 😸
+        </p>
+      )}
+
       <main className={c.main}>
         {limitBooks && books.length > 0 && (
           <div className={c.limitMessage}>
@@ -44,6 +56,7 @@ export function Catalog() {
             letting you add more soon! 😸
           </div>
         )}
+
         {books.length > 0 && (
           <div className={c.wrap}>
             <div className={c.books}>
@@ -55,19 +68,17 @@ export function Catalog() {
                     i={i}
                     handleOpenModal={handleOpenModal}
                     isMyLibrary={false}
+                    setIsLoading={setIsLoading}
                     {...(limitBooks ? { limitBooks } : {})}
                   />
                 );
               })}
             </div>
 
-            {isLoading.loadMore && <Loading />}
+            {isLoading && <Loading />}
 
-            {buffer.length > 0 && !isLoading.loadMore && (
-              <LoadMoreButton
-                onClick={handleLoadData}
-                isLoading={isLoading.loadMore}
-              />
+            {buffer.length > 0 && !isLoading && (
+              <LoadMoreButton onClick={handleLoadData} isLoading={isLoading} />
             )}
           </div>
         )}
