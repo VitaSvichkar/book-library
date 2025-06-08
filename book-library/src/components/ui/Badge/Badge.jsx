@@ -5,7 +5,7 @@ export const Badge = React.memo(({ status }) => {
   console.log('badge');
   return (
     <span className={`${c.badge} ${c[status]}`}>
-      {status ? status[0].toUpperCase() + status.slice(1) : 'To read'}
+      {status ? status.at(0).toUpperCase() + status.slice(1) : 'To read'}
     </span>
   );
 });

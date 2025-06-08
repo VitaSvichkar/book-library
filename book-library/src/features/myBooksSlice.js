@@ -113,8 +113,6 @@ export const {
   addBook,
   removeBook,
   toggleBookFinished,
-  setStatus,
-  setProgress,
   setFinish,
   setReview,
   setGrade,

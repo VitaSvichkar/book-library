@@ -8,6 +8,7 @@ import { checkIgnoreModalClick } from '../../utils/checkIgnoreModalClick';
 import { openModal } from '../../features/modalSlice';
 
 export function MyLibrary({ myLibraryNavigation }) {
+  console.log('my library');
   const myBooks = useSelector(getMyBooks);
   const dispatch = useDispatch();
   const location = useLocation();

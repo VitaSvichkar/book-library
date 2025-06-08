@@ -1,5 +1,5 @@
-import { setBooks, setBuffer, setIsLoading, setStartIndex } from './booksSlice';
-import checkAndSetIsAdded from './checkAndSetIsAdded';
+import { setBooks, setBuffer, setStartIndex } from './booksSlice';
+import checkAndSetIsAdded from '../utils/checkAndSetIsAdded';
 import { fetchBooksFromAPI } from './fetchBooksFromAPI';
 
 export const loadMoreBooks = (value, type) => async (dispatch, getState) => {
@@ -22,5 +22,4 @@ export const loadMoreBooks = (value, type) => async (dispatch, getState) => {
   dispatch(setBooks(books));
   dispatch(setBuffer(bufferLeft));
   dispatch(setStartIndex(nextIndex));
-  dispatch(setIsLoading({ type: 'loadMore', value: false }));
 };

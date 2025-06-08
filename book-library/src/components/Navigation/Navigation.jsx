@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import c from './navigation.module.css';
 
 export function Navigation() {
+  console.log('NAvigation');
   return (
     <nav className={c.navMain}>
       <ul className={c.list}>
@@ -18,15 +19,7 @@ export function Navigation() {
             className={({ isActive }) => (isActive ? c.active : c.link)}
             to="catalog"
           >
-            Сatalog
-          </NavLink>
-        </li>
-        <li className={c.item}>
-          <NavLink
-            className={({ isActive }) => (isActive ? c.active : c.link)}
-            to="str"
-          >
-            str
+            Catalog
           </NavLink>
         </li>
       </ul>
