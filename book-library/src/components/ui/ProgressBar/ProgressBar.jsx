@@ -34,7 +34,13 @@ export const ProgressBar = React.memo(({ id, pages, isFinished, book }) => {
   }
 
   useEffect(() => {
-    const value = isFinished ? pages : savedValue.current;
+    const savedValueNumber = Number(savedValue.current);
+    const value = isFinished
+      ? pages
+      : savedValueNumber === pages
+      ? 0
+      : savedValueNumber;
+
     setBarState(value);
 
     if (value !== book.progress) {
