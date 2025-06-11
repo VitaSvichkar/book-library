@@ -1,15 +1,24 @@
-.wrap {
-  display: grid;
-  justify-items: center;
-  gap: 30px;
-}
-
 .main {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
   padding: 10px;
+}
+
+.wrap {
+  display: grid;
+  justify-items: center;
+  gap: 30px;
+  position: relative;
+}
+
+.main:before {
+  content: '';
+  position: absolute;
+  inset: 0px;
+  backdrop-filter: blur(5px);
 }
 
 .books {
@@ -19,11 +28,16 @@
   justify-items: center;
 }
 
+.infoMessage,
 .limitMessage {
   position: sticky;
   top: 0;
-  background-color: #251313;
-  border: 1px solid rgb(91, 80, 80);
-  padding: 5px;
+  z-index: 1;
+  background-color: #0505057e;
+  padding: 10px;
   border-radius: 5px;
+}
+
+.limitMessage {
+  background-color: #2d1616;
 }

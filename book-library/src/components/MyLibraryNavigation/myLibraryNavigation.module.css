@@ -1,15 +1,25 @@
-.active,
-.link {
-  display: block;
-  border-bottom: 1px solid transparent;
-  padding: 3px;
-  transition: 0.3s ease all;
+.link,
+.active {
+  transition: 0.2s ease padding;
+}
+
+.active {
+  cursor: default;
 }
 
 .link:hover,
 .active {
+  padding-left: 10px;
   border-bottom: 1px solid rgba(205, 183, 133, 0.119);
   color: rgb(213, 168, 64);
+}
+
+.link:hover {
+  color: rgb(237, 221, 185);
+}
+
+.link:active {
+  color: rgb(188, 146, 50);
 }
 
 .navCatalog ul {

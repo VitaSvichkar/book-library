@@ -19,28 +19,28 @@
 }
 
 .badge.reading {
-  background-color: #224c6b;
+  background-color: #16323b;
 }
 
 .badge.reading::before {
   content: '●';
-  color: rgb(28, 121, 155);
+  color: #377f97;
 }
 
 .badge.completed {
-  background-color: #316946;
+  background-color: #917418;
 }
 
 .badge.completed::before {
   content: '●';
-  color: rgb(34, 165, 78);
+  color: rgb(252, 214, 47);
 }
 
 /* PROGRESS BAR */
 
 .labelProgress {
   position: relative;
-  background-color: #254c2f;
+  background-color: #2b1e12;
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -49,7 +49,7 @@
 }
 
 .labelProgress div {
-  background-color: #509573;
+  background-color: #733a04;
   position: absolute;
   height: 100%;
   border-radius: 4px;
@@ -69,7 +69,7 @@ input[type='range'] {
 input[type='range']::-webkit-slider-thumb {
   width: 2px;
   height: 5px;
-  background: #509573;
+  background: #958613;
   cursor: pointer;
   -webkit-appearance: none;
 }
@@ -85,13 +85,13 @@ input[type='range']::-moz-range-thumb {
 
 .wrap {
   display: inline-block;
-  background-color: #6e6f7a41;
+  background-color: #25232385;
   border-radius: 4px;
   padding: 0 5px;
 }
 
 .wrap span {
-  color: rgb(117, 117, 117);
+  color: rgb(55, 53, 53);
   display: inline-block;
   padding-top: 1px;
   transition: 0.2s ease all;
@@ -106,7 +106,7 @@ input[type='range']::-moz-range-thumb {
 }
 
 .wrap .starIco {
-  color: rgb(239, 202, 82);
+  color: rgb(233, 216, 174);
 }
 
 /* BTN */
@@ -134,10 +134,4 @@ input[type='range']::-moz-range-thumb {
 .btnAdded,
 .btnFinished {
   color: rgb(108, 159, 61);
-}
-
-/* BTN DELETE */
-
-.btnDelete:hover span {
-  color: rgb(21, 20, 20);
 }

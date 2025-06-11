@@ -1,16 +1,8 @@
 .btnLoadBooks {
-  background-color: rgb(102, 51, 153);
+  background-color: rgb(102, 75, 45);
   padding: 10px;
 }
 
 .btnLoadBooks:hover {
-  background-color: rgb(80, 37, 123);
-}
-
-.btnLoadBooks:disabled {
-  background-color: rgb(79, 79, 79);
-}
-
-.btnLoadBooks:disabled:hover {
-  background-color: rgb(79, 79, 79);
+  background-color: rgb(133, 93, 47);
 }

@@ -43,23 +43,28 @@ export function MyLibrary({ myLibraryNavigation }) {
   useEffect(() => {
     dispatch(setFilterType(filter));
   }, [dispatch, filter]);
+
   return (
     <div className={c.wrap}>
       {myLibraryNavigation}
 
-      <main className={c.wrapBooks}>
-        {filteredBooks.length > 0 &&
-          filteredBooks.map((book, i) => {
-            return (
-              <CardWrapper
-                key={book.id}
-                book={book}
-                i={i}
-                isMyLibrary={true}
-                handleOpenModal={handleOpenModal}
-              />
-            );
-          })}
+      <main className={c.main}>
+        <div className={c.wrapBooks}>
+          <div className={c.books}>
+            {filteredBooks.length > 0 &&
+              filteredBooks.map((book, i) => {
+                return (
+                  <CardWrapper
+                    key={book.id}
+                    book={book}
+                    i={i}
+                    isMyLibrary={true}
+                    handleOpenModal={handleOpenModal}
+                  />
+                );
+              })}
+          </div>
+        </div>
       </main>
     </div>
   );

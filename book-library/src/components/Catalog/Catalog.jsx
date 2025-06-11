@@ -49,14 +49,14 @@ export function Catalog() {
         </p>
       )}
 
-      <main className={c.main}>
-        {limitBooks && books.length > 0 && (
-          <div className={c.limitMessage}>
-            Looks like you've reached the 50-book limit! We’re working on
-            letting you add more soon! 😸
-          </div>
-        )}
+      {limitBooks && books.length > 0 && (
+        <div className={`${c.limitMessage} ${c.infoMessage} `}>
+          Looks like you've reached the 50-book limit! We’re working on letting
+          you add more soon! 😸
+        </div>
+      )}
 
+      <main className={c.main}>
         {books.length > 0 && (
           <div className={c.wrap}>
             <div className={c.books}>
