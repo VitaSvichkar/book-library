@@ -40,7 +40,11 @@ export function Catalog() {
 
   return (
     <>
-      <Search setIsLoading={setIsLoading} setIsRequest={setIsRequest} />
+      <Search
+        setIsLoading={setIsLoading}
+        setIsRequest={setIsRequest}
+        keyword={keyword}
+      />
 
       {isLoading && <Loading />}
       {isRequest && !isLoading && books.length < 1 && (

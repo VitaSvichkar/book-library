@@ -2,11 +2,12 @@ import c from './search.module.css';
 import { getType, setKeyword, setTypeQuery } from '../../features/searchSlice';
 import { fetchBooks } from '../../features/fetchBooks';
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export const Search = React.memo(({ setIsLoading, setIsRequest }) => {
+export const Search = React.memo(({ setIsLoading, setIsRequest, keyword }) => {
   console.log('search');
-  const [words, setWords] = useState({ keyword: '', lastKeyword: '' });
+
+  const [words, setWords] = useState({ keyword: keyword, lastKeyword: '' });
   const type = useSelector(getType);
   const dispatch = useDispatch();
 
@@ -18,6 +19,10 @@ export const Search = React.memo(({ setIsLoading, setIsRequest }) => {
     setWords((prev) => ({ ...prev, keyword: '', lastKeyword: '' }));
     dispatch(setTypeQuery(value));
   }
+
+  useEffect(() => {
+    setWords((prev) => ({ ...prev, keyword: keyword }));
+  }, [keyword]);
 
   async function handleSetFetch(e) {
     const formData = new FormData(e.target);
