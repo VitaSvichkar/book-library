@@ -1,5 +1,5 @@
 import c from './catalog.module.css';
-import { CardWrapper } from '../Card/CardWrapper';
+import { CardWrapper } from '../Cards/CardWrapper';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBooksState } from '../../features/booksSlice';
 import { getKeyword } from '../../features/searchSlice';
@@ -67,9 +67,8 @@ export function Catalog() {
               {books.map((book, i) => {
                 return (
                   <CardWrapper
-                    key={book.id}
+                    key={book.id + i}
                     book={book}
-                    i={i}
                     handleOpenModal={handleOpenModal}
                     isMyLibrary={false}
                     setIsLoading={setIsLoading}

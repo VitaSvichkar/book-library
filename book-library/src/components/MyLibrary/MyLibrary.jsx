@@ -1,7 +1,7 @@
 import c from './myLibrary.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMyBooks, setFilterType } from '../../features/myBooksSlice';
-import { CardWrapper } from '../Card/CardWrapper';
+import { CardWrapper } from '../Cards/CardWrapper';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { checkIgnoreModalClick } from '../../utils/checkIgnoreModalClick';

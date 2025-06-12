@@ -15,6 +15,7 @@
   align-items: center;
   gap: 10px;
   width: 100%;
+  border-radius: 5px;
 }
 
 .cardInfo {
@@ -57,7 +58,7 @@
   align-items: flex-start;
   justify-content: space-between;
   flex: 1;
-  gap: 5px;
+  gap: 3px;
   font-size: 13px;
   text-transform: capitalize;
 }
@@ -65,28 +66,22 @@
 .cardDescription h2 {
   font-weight: 400;
   color: rgb(167, 187, 248);
-  padding: 5px;
   max-height: 2em;
 }
 
-.authors {
-  padding: 0 5px;
-}
-
 .cardDescription h2,
-.authorsLink {
+.category,
+.authorLink {
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding: 0 5px;
 }
 
-.authorsLink {
-  display: flex;
-}
-
-.authorLink {
+.authorLink,
+.author {
   display: inline-block;
   padding: 5px;
   border-radius: 4px;
@@ -96,7 +91,8 @@
 
 .categories,
 .wrapLabel,
-.wrapStar {
+.wrapStar,
+.category {
   display: flex;
   gap: 5px;
   padding: 5px;
@@ -109,6 +105,11 @@
 .wrapLabel:hover,
 .wrapStar:hover {
   background-color: #5f606441;
+}
+
+.category {
+  padding: 3px;
+  background-color: #3f3f3e;
 }
 
 /* PROGRESS BAR */
@@ -163,6 +164,7 @@
   justify-content: space-between;
   width: 100%;
   gap: 10px;
+  padding: 10px 0 0;
 }
 
 .btnAddFavorites,
