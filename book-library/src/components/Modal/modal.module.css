@@ -15,7 +15,6 @@
 .modal {
   display: flex;
   flex-direction: column;
-
   gap: 10px;
   background-color: #ffffff;
   color: black;
@@ -24,10 +23,6 @@
   border-radius: 10px;
   cursor: default;
   padding: 15px;
-}
-
-.modal h1 {
-  color: rgb(38, 72, 173);
 }
 
 .wrap {
@@ -53,6 +48,7 @@
   max-height: 165px;
   overflow-y: auto;
   flex: 1;
+  font-family: 'Lora';
 }
 
 .bookMeta {
@@ -62,14 +58,13 @@
 }
 
 .bookMeta a {
-  color: rgb(11, 57, 209);
+  color: rgb(155, 3, 3);
   text-decoration: underline;
 }
 
 .bookMeta th,
 td {
   padding: 3px;
-  font-weight: 400;
   border-bottom: 1px solid rgb(232, 232, 232);
 }
 
@@ -84,6 +79,7 @@ td {
 }
 
 .aboutBook p {
+  font-family: 'Lora';
   overflow-y: auto;
   max-height: 250px;
 }
@@ -128,7 +124,7 @@ td {
 }
 
 .messageInfo {
-  color: rgb(108, 159, 61);
+  color: rgb(28, 12, 12);
   align-self: center;
   display: flex;
   cursor: default;
@@ -141,7 +137,9 @@ td {
   height: 200px;
   resize: none;
   padding: 0 5px;
-  font-size: 17px;
+  font-size: 25px;
+  line-height: 1;
+  font-family: 'Caveat';
   background-color: transparent;
   border-color: rgb(243, 243, 243);
   color: rgb(82, 82, 82);
@@ -149,20 +147,23 @@ td {
 
 .textarea:focus {
   outline: none;
-  background-color: #f2f2f2;
   border-color: rgb(235, 235, 235);
-  color: rgb(0, 0, 0);
+  color: rgb(2, 27, 117);
 }
 
 .btnSave {
-  background-color: rgb(102, 51, 153);
+  background-color: transparent;
+  text-transform: uppercase;
+  border-radius: 5px;
+  transition: 0.1s ease;
+  letter-spacing: 0.5px;
+  color: rgb(161, 138, 138);
   padding: 3px 10px;
-  border-radius: 3px;
-  transition: 0.2s ease background-color;
 }
 
 .btnSave:hover {
-  background-color: rgb(80, 37, 123);
+  color: rgb(28, 12, 12);
+  text-decoration: underline;
 }
 
 .btnSave:disabled {

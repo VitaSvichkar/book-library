@@ -1,8 +1,14 @@
 .btnLoadBooks {
-  background-color: rgb(22, 16, 14);
-  padding: 10px;
+  background-color: transparent;
+  text-transform: uppercase;
+  border-radius: 5px;
+  padding: 8px;
+  transition: 0.1s ease;
+  letter-spacing: 0.5px;
+  color: rgb(161, 138, 138);
 }
 
 .btnLoadBooks:hover {
-  background-color: rgb(61, 44, 38);
+  color: rgb(255, 255, 255);
+  text-decoration: underline;
 }

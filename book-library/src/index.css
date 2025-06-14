@@ -1,6 +1,6 @@
 :root {
   line-height: 1.5;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Roboto';
   font-size: 15px;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -11,9 +11,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1,
+h2 {
+  font-family: 'Playfair Display';
+}
+
 a {
   text-decoration: inherit;
   color: rgb(255, 255, 255);
+}
+
+button {
+  font-family: 'Roboto';
 }
 
 *,

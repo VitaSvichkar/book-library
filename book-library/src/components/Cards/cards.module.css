@@ -87,6 +87,8 @@
   border-radius: 4px;
   transition: 0.2s ease all;
   line-height: 1.1;
+  font-family: 'Lora';
+  font-style: italic;
 }
 
 .categories,
@@ -110,6 +112,8 @@
 .category {
   padding: 3px;
   background-color: #3f3f3e;
+  font-family: 'Lora';
+  font-style: italic;
 }
 
 /* PROGRESS BAR */

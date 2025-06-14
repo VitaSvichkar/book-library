@@ -45,7 +45,9 @@ export function BookData({ book }) {
                 <tr>
                   <th>Preview</th>
                   <td>
-                    <a href={book.previewLink}>Open me</a>
+                    <a href={book.previewLink} target="_blank">
+                      Open me
+                    </a>
                   </td>
                 </tr>
               )}
