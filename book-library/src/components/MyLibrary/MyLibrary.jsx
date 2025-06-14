@@ -44,30 +44,32 @@ export function MyLibrary({ myLibraryNavigation }) {
     dispatch(setFilterType(filter));
   }, [dispatch, filter]);
 
-  return filteredBooks.length > 0 ? (
+  return (
     <div className={c.wrap}>
       {myLibraryNavigation}
-      <main className={c.main}>
-        <div className={c.wrapBooks}>
-          <div className={c.books}>
-            {filteredBooks.map((book, i) => {
-              return (
-                <CardWrapper
-                  key={book.id}
-                  book={book}
-                  i={i}
-                  isMyLibrary={true}
-                  handleOpenModal={handleOpenModal}
-                />
-              );
-            })}
+      {filteredBooks.length > 0 ? (
+        <main className={c.main}>
+          <div className={c.wrapBooks}>
+            <div className={c.books}>
+              {filteredBooks.map((book, i) => {
+                return (
+                  <CardWrapper
+                    key={book.id}
+                    book={book}
+                    i={i}
+                    isMyLibrary={true}
+                    handleOpenModal={handleOpenModal}
+                  />
+                );
+              })}
+            </div>
           </div>
+        </main>
+      ) : (
+        <div className={c.infoMessage}>
+          `So quiet here... 🤫 Maybe it’s time to add your first book? 📚`
         </div>
-      </main>
-    </div>
-  ) : (
-    <div className={c.infoMessage}>
-      So quiet here... 🤫 Maybe it’s time to add your first book? 📚
+      )}
     </div>
   );
 }
