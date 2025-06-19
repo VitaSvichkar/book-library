@@ -22,14 +22,16 @@ export const CatalogCard = React.memo((props) => {
         </div>
 
         <div className={c.categories}>
-          <span
-            className={c.category}
-            onClick={(e) =>
-              props.handleSearchTags(e, props.category, 'category')
-            }
-          >
-            {props.category}
-          </span>
+          {props.category && (
+            <span
+              className={c.category}
+              onClick={(e) =>
+                props.handleSearchTags(e, props.category, 'category')
+              }
+            >
+              {props.category}
+            </span>
+          )}
         </div>
 
         <div className={c.wrapBtn}>
