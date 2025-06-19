@@ -3,6 +3,8 @@ import { getType, setKeyword, setTypeQuery } from '../../features/searchSlice';
 import { fetchBooks } from '../../features/fetchBooks';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 export const Search = React.memo(({ setIsLoading, setIsRequest, keyword }) => {
   console.log('search');
@@ -84,7 +86,7 @@ export const Search = React.memo(({ setIsLoading, setIsRequest, keyword }) => {
             value={words.keyword}
           />
           <button>
-            <img src="../public/ico-search.png" alt="#" width="25" />
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </div>
       </form>

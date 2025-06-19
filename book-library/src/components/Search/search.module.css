@@ -27,6 +27,7 @@
 
 .search {
   display: flex;
+  gap: 3px;
   background-color: rgba(249, 249, 249, 0.892);
   min-width: 100px;
   max-width: 400px;
@@ -53,6 +54,7 @@
   flex-shrink: 0;
   background-color: transparent;
   border: none;
+  color: rgb(48, 48, 48);
 }
 
 .infoMessage {
