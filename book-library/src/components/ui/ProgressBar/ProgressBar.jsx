@@ -54,6 +54,7 @@ export const ProgressBar = React.memo(({ id, pages, isFinished, book }) => {
         <input
           onChange={handleSetProgressLocal}
           onMouseUp={handleSetProgressGlobal}
+          onTouchEnd={handleSetProgressGlobal}
           type="range"
           min="0"
           max={pages}
