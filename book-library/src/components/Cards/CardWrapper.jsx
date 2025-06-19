@@ -15,7 +15,6 @@ import { CatalogCard } from './CatalogCard/CatalogCard';
 
 export const CardWrapper = React.memo(
   ({ book, handleOpenModal, isMyLibrary, limitBooks, setIsLoading }) => {
-    console.log('CARD wrapper');
     const dispatch = useDispatch();
 
     const title = book.volumeInfo.title.toLowerCase();
@@ -33,7 +32,6 @@ export const CardWrapper = React.memo(
 
     const handleSearchTags = useCallback(
       async (e, el, type) => {
-        console.log('search author');
         e.preventDefault();
         setIsLoading(true);
 
@@ -50,12 +48,10 @@ export const CardWrapper = React.memo(
     );
 
     const handleToggleFavorite = useCallback(() => {
-      console.log('toggle favorite');
       dispatch(setIsFavorite(book.id));
     }, [dispatch, book.id]);
 
     const handleToggleFinish = useCallback(() => {
-      console.log('toggle finish');
       book.isFinished
         ? dispatch(setFinish({ id: book.id, value: false }))
         : dispatch(setFinish({ id: book.id, value: true }));
@@ -71,7 +67,6 @@ export const CardWrapper = React.memo(
     }, [dispatch, book.id, book.isAdded, limitBooks]);
 
     const handleDeleteBook = useCallback(() => {
-      console.log('delete book');
       dispatch(removeBook(book.id));
       dispatch(setIsAdded(book.id));
     }, [dispatch, book.id]);

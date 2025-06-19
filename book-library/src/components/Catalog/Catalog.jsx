@@ -13,7 +13,6 @@ import { getMyBooks } from '../../features/myBooksSlice';
 import { checkIgnoreModalClick } from '../../utils/checkIgnoreModalClick';
 
 export function Catalog() {
-  console.log('catalog');
   const [isLoading, setIsLoading] = useState(false);
   const [isRequest, setIsRequest] = useState(false);
 

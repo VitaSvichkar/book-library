@@ -7,7 +7,6 @@ import { MyLibraryNavigation } from './components/MyLibraryNavigation/MyLibraryN
 import { ModalWrapper } from './components/Modal/ModalWrapper';
 
 function App() {
-  console.log('APP');
   return (
     <div className="wrap">
       <header>

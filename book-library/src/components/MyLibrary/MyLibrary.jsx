@@ -8,7 +8,6 @@ import { checkIgnoreModalClick } from '../../utils/checkIgnoreModalClick';
 import { openModal } from '../../features/modalSlice';
 
 export function MyLibrary({ myLibraryNavigation }) {
-  console.log('my library');
   const myBooks = useSelector(getMyBooks);
   const dispatch = useDispatch();
   const location = useLocation();
@@ -24,10 +23,7 @@ export function MyLibrary({ myLibraryNavigation }) {
     [dispatch]
   );
 
-  console.log('my library');
-
   const filteredBooks = useMemo(() => {
-    console.log('filtered book');
     switch (filter) {
       case 'favorite':
         return myBooks.filter((book) => book.isFavorite);

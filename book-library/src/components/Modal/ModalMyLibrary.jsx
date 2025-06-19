@@ -7,8 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
 export function ModalMyLibrary({ book, handleCloseModal }) {
-  console.log('modal my library');
-
   const [myReview, setMyReview] = useState(book.review);
   const dispatch = useDispatch();
   const [isSaved, setIsSaved] = useState(null);

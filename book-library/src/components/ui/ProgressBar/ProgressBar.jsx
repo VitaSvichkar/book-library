@@ -8,7 +8,7 @@ export const ProgressBar = React.memo(({ id, pages, isFinished, book }) => {
   const savedValue = useRef(progress);
   const dispatch = useDispatch();
   const width = (progress / pages) * 100;
-  console.log('progress');
+
   function handleSetProgressLocal(e) {
     setBarState(e.target.value);
   }

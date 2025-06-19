@@ -109,6 +109,14 @@ input[type='range']::-moz-range-thumb {
   color: rgb(233, 216, 174);
 }
 
+/* LOADING */
+
+.icoLoading {
+  display: flex;
+  font-size: 20px;
+  padding: 10px;
+}
+
 @media (hover: none) and (pointer: coarse) {
   .wrap span:hover {
     transform: none;

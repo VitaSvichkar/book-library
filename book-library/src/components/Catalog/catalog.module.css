@@ -33,11 +33,11 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  background-color: #0505057e;
+  background-color: rgba(5, 5, 5, 0.494);
   padding: 10px;
   border-radius: 5px;
 }
 
 .limitMessage {
-  background-color: #2d1616;
+  background-color: rgb(45, 22, 22);
 }

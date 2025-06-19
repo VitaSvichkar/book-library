@@ -22,7 +22,7 @@
 .cardInfo {
   display: flex;
   flex-direction: column;
-  background-color: #0505057e;
+  background-color: rgba(5, 5, 5, 0.494);
   border-radius: 10px;
   transition: 0.2s ease background-color;
   width: 100%;
@@ -45,7 +45,7 @@
 }
 
 .wrap:hover .cardInfo {
-  background-color: #050505ad;
+  background-color: rgba(5, 5, 5, 0.678);
 }
 
 .wrap:hover .bookCover {
@@ -107,12 +107,12 @@
 .authorLink:hover,
 .wrapLabel:hover,
 .wrapStar:hover {
-  background-color: #5f606441;
+  background-color: rgba(95, 96, 100, 0.255);
 }
 
 .category {
   padding: 3px;
-  background-color: #3f3f3e;
+  background-color: rgb(63, 63, 62);
   font-family: 'Lora';
   font-style: italic;
 }
@@ -220,7 +220,7 @@
   }
 
   .wrap:hover .cardInfo {
-    background-color: #0505057e;
+    background-color: rgba(5, 5, 5, 0.494);
   }
 
   .wrap:hover .bookCover {

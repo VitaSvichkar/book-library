@@ -4,7 +4,6 @@ import { getFilterType } from '../../features/myBooksSlice';
 import { useSelector } from 'react-redux';
 
 export function MyLibraryNavigation() {
-  console.log('my library Navig');
   const filter = useSelector(getFilterType);
 
   const navigationLinks = [

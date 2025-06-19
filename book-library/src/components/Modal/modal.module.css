@@ -1,6 +1,6 @@
 .overlay {
   display: flex;
-  background-color: #00000094;
+  background-color: rgba(0, 0, 0, 0.58);
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -17,8 +17,8 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: #ffffff;
-  color: black;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   min-width: 400px;
   width: 500px;
   border-radius: 10px;
@@ -93,7 +93,7 @@ td {
 .wrapBookMeta,
 .textarea {
   scrollbar-width: thin;
-  scrollbar-color: #888 #f0f0f0;
+  scrollbar-color: rgb(136, 136, 136) rgb(240, 240, 240);
 }
 
 .aboutBook p::-webkit-scrollbar,
@@ -105,13 +105,13 @@ td {
 .aboutBook p::-webkit-scrollbar-track,
 .wrapBookMeta::-webkit-scrollbar-track,
 .textarea::-webkit-scrollbar-track {
-  background: #f0f0f0;
+  background: rgb(240, 240, 240);
 }
 
 .aboutBook p::-webkit-scrollbar-thumb,
 .wrapBookMeta::-webkit-scrollbar-thumb,
 .textarea::-webkit-scrollbar-thumb {
-  background: #888;
+  background: rgb(136, 136, 136);
   border-radius: 10px;
 }
 

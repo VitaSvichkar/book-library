@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom';
 import c from './navigation.module.css';
 
 export function Navigation() {
-  console.log('NAvigation');
   return (
     <nav className={c.navMain}>
       <ul className={c.list}>

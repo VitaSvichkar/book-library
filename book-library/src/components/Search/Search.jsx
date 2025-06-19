@@ -7,8 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 export const Search = React.memo(({ setIsLoading, setIsRequest, keyword }) => {
-  console.log('search');
-
   const [words, setWords] = useState({ keyword: keyword, lastKeyword: '' });
   const type = useSelector(getType);
   const dispatch = useDispatch();
