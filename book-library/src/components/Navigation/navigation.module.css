@@ -25,3 +25,9 @@
 .link:active {
   color: rgb(188, 146, 50);
 }
+
+@media (hover: none) and (pointer: coarse) {
+  .link:hover {
+    color: white;
+  }
+}

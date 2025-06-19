@@ -1,19 +1,20 @@
 .wrap {
-  padding: 10px;
-  width: 270px;
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 8px;
+  padding: 8px;
+  width: 255px;
+  border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.03);
   cursor: pointer;
+  position: relative;
 }
 
 .bookActions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   width: 100%;
   border-radius: 5px;
 }
@@ -30,7 +31,7 @@
 }
 
 .bookCover {
-  height: 160px;
+  height: 140px;
   width: 100%;
   border-bottom: 1px solid rgb(50, 50, 50);
   filter: grayscale(40%);
@@ -52,7 +53,7 @@
 }
 
 .cardDescription {
-  padding: 10px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -77,7 +78,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: 0 5px;
+  padding: 0 3px;
 }
 
 .authorLink,
@@ -119,7 +120,7 @@
 /* PROGRESS BAR */
 
 .wrapLabel {
-  height: 25px;
+  height: 23px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -132,7 +133,7 @@
   background-color: transparent;
   padding: 0 5px;
   border-radius: 4px;
-  font-size: 17px;
+  font-size: 15px;
 }
 
 .btn:disabled {
@@ -145,10 +146,6 @@
 
 .btn:disabled:hover svg {
   transform: scale(1);
-}
-
-.btn:hover {
-  color: rgb(153, 209, 101);
 }
 
 .btn svg {
@@ -187,4 +184,46 @@
 .btnFinished,
 .btnAdded {
   color: rgb(108, 159, 61);
+}
+
+.btnFinish:hover,
+.btnAdd:hover {
+  color: rgb(108, 159, 61);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .btnDelete:hover,
+  .btn:disabled:hover,
+  .bthFavorite:hover,
+  .btnFinish:hover,
+  .btnAdd:hover {
+    color: rgb(101, 102, 99);
+  }
+
+  .btnAddFavorites:hover {
+    color: rgb(250, 177, 31);
+  }
+
+  .btn:hover svg {
+    transform: none;
+  }
+
+  .btn:disabled:hover svg {
+    transform: none;
+  }
+
+  .categories:hover,
+  .authorLink:hover,
+  .wrapLabel:hover,
+  .wrapStar:hover {
+    background-color: transparent;
+  }
+
+  .wrap:hover .cardInfo {
+    background-color: #0505057e;
+  }
+
+  .wrap:hover .bookCover {
+    filter: grayscale(40%);
+  }
 }

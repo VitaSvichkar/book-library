@@ -109,29 +109,8 @@ input[type='range']::-moz-range-thumb {
   color: rgb(233, 216, 174);
 }
 
-/* BTN */
-
-.btn {
-  color: rgb(101, 102, 99);
-  background-color: transparent;
-  padding: 7px;
-  border-radius: 4px;
-  font-size: 17px;
-}
-
-.btn span {
-  display: flex;
-  transition: 0.2s ease all;
-}
-
-.btn:hover span {
-  transform: scale(1.4);
-  color: rgb(153, 209, 101);
-}
-
-/* BTN ADDED */
-
-.btnAdded,
-.btnFinished {
-  color: rgb(108, 159, 61);
+@media (hover: none) and (pointer: coarse) {
+  .wrap span:hover {
+    transform: none;
+  }
 }

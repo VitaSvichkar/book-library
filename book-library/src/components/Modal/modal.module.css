@@ -9,6 +9,7 @@
   z-index: 2;
   width: 100%;
   height: 100%;
+  padding: 5px;
   cursor: pointer;
 }
 
@@ -18,7 +19,7 @@
   gap: 10px;
   background-color: #ffffff;
   color: black;
-  min-width: 300px;
+  min-width: 400px;
   width: 500px;
   border-radius: 10px;
   cursor: default;
@@ -114,7 +115,7 @@ td {
   border-radius: 10px;
 }
 
-/* modal my library */
+/* MODAL MY LIBRARY*/
 
 .form {
   display: flex;
@@ -172,4 +173,52 @@ td {
 
 .btnSave:disabled:hover {
   background-color: rgb(79, 79, 79);
+}
+
+@media screen and (max-width: 768.99px) {
+  .modal {
+    min-width: 200px;
+    width: 350px;
+    padding: 8px;
+  }
+
+  .modal h1,
+  .modal h2 {
+    font-size: 18px;
+  }
+
+  .bookCover {
+    display: none;
+  }
+
+  .aboutBook p {
+    max-height: 150px;
+  }
+
+  .aboutBook h2 {
+    padding: 5px 0;
+  }
+}
+
+@media screen and (max-width: 385px) {
+  .modal {
+    min-width: 150px;
+    width: 280px;
+    padding: 8px;
+  }
+
+  .textarea {
+    font-size: 20px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .btnSave:hover {
+    color: rgb(161, 138, 138);
+    text-decoration: none;
+  }
+
+  .btnSave:disabled:hover {
+    background-color: rgb(79, 79, 79);
+  }
 }

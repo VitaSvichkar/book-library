@@ -62,7 +62,7 @@ export const LibraryCard = React.memo((props) => {
             <button
               onClick={() => props.handleToggleFinish(props.book)}
               className={`${c.btn} ${
-                props.book.isFinished ? c.btnFinished : ''
+                props.book.isFinished ? c.btnFinished : c.btnFinish
               }`}
             >
               <FontAwesomeIcon

@@ -36,7 +36,7 @@ export const CatalogCard = React.memo((props) => {
           <button
             disabled={props.limitBooks && !props.book.isAdded}
             onClick={() => props.handleToggleAddBook(props.book)}
-            className={`${c.btn} ${props.book.isAdded ? c.btnAdded : ''}`}
+            className={`${c.btn} ${props.book.isAdded ? c.btnAdded : c.btnAdd}`}
           >
             <FontAwesomeIcon icon={props.book.isAdded ? faCheck : faPlus} />
           </button>

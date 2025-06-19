@@ -8,6 +8,7 @@
   border: 1px solid rgb(82, 82, 82);
   padding: 0 5px;
   border-radius: 5px;
+  min-width: 80px;
 }
 
 .select {
@@ -27,18 +28,19 @@
 .search {
   display: flex;
   background-color: rgba(249, 249, 249, 0.892);
-  min-width: 200px;
-  width: 400px;
+  min-width: 100px;
+  max-width: 400px;
   border: 1px solid gainsboro;
   border-radius: 5px;
-  padding: 5px 15px;
+  padding: 2px 5px;
 }
 
 .search input {
   flex: 1;
+  width: 100%;
   border: 1px solid transparent;
   background-color: transparent;
-  font-size: 20px;
+  font-size: 16px;
   font-style: italic;
   color: rgb(50, 50, 51);
 }
@@ -59,4 +61,10 @@
   padding: 10px;
   border-radius: 10px;
   font-size: 20px;
+}
+
+@media screen and (max-width: 400px) {
+  .select {
+    padding-right: 0px;
+  }
 }

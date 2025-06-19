@@ -60,8 +60,8 @@ export function Catalog() {
         </div>
       )}
 
-      <main className={c.main}>
-        {books.length > 0 && (
+      {books.length > 0 && (
+        <main className={c.main}>
           <div className={c.wrap}>
             <div className={c.books}>
               {books.map((book, i) => {
@@ -84,8 +84,8 @@ export function Catalog() {
               <LoadMoreButton onClick={handleLoadData} isLoading={isLoading} />
             )}
           </div>
-        )}
-      </main>
+        </main>
+      )}
     </>
   );
 }

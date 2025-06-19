@@ -26,5 +26,31 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
+}
+
+@media screen and (max-width: 960px) {
+  .link:hover,
+  .active {
+    padding-left: 0px;
+  }
+
+  .navCatalog {
+    display: flex;
+    justify-content: center;
+  }
+
+  .navCatalog ul {
+    flex-direction: row;
+    text-align: center;
+    gap: 20px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .link:hover {
+    padding-left: 0;
+    border-bottom: 1px solid transparent;
+    color: white;
+  }
 }
