@@ -46,7 +46,8 @@ export function Catalog() {
         keyword={keyword}
       />
 
-      {isLoading && <Loading />}
+      {isLoading && books.length < 1 && <Loading />}
+
       {isRequest && !isLoading && books.length < 1 && (
         <p className={c.infoMessage}>
           We couldn't find anything. Maybe try another keyword? 😸
