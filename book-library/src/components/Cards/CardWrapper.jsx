@@ -18,8 +18,11 @@ export const CardWrapper = React.memo(
     const dispatch = useDispatch();
 
     const title = book.volumeInfo.title.toLowerCase();
-    const category = book.volumeInfo.categories?.slice(0, 1);
-    const author = book.volumeInfo.authors?.slice(0, 1);
+    const category = book.volumeInfo.categories
+      ?.slice(0, 1)
+      .join()
+      .toLowerCase();
+    const author = book.volumeInfo.authors?.slice(0, 1).join().toLowerCase();
     const bookCover = book.volumeInfo.imageLinks.smallThumbnail;
 
     const classes = {
