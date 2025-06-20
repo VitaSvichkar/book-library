@@ -23,7 +23,10 @@ export const CardWrapper = React.memo(
       .join()
       .toLowerCase();
     const author = book.volumeInfo.authors?.slice(0, 1).join().toLowerCase();
-    const bookCover = book.volumeInfo.imageLinks.smallThumbnail;
+    const bookCover = book.volumeInfo.imageLinks.thumbnail.replace(
+      /^http:\/\//i,
+      'https://'
+    );
 
     const classes = {
       authorLink: c.authorLink,

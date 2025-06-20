@@ -1,7 +1,10 @@
 import c from './modal.module.css';
 
 export function BookData({ book }) {
-  const bookCover = book.imageLinks?.smallThumbnail;
+  const bookCover = book.imageLinks.thumbnail.replace(
+    /^http:\/\//i,
+    'https://'
+  );
 
   return (
     <>

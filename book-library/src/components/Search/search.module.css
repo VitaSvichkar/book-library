@@ -19,6 +19,7 @@
   outline: none;
   cursor: pointer;
   padding-right: 10px;
+  color: rgb(255, 255, 255);
 }
 
 .select option {
@@ -27,7 +28,7 @@
 
 .search {
   display: flex;
-  gap: 3px;
+  gap: 7px;
   background-color: rgba(249, 249, 249, 0.892);
   min-width: 100px;
   max-width: 400px;
