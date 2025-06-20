@@ -26,7 +26,6 @@
 .books {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  justify-content: space-between;
   justify-items: center;
   gap: 10px;
 }
@@ -54,6 +53,13 @@
 @media screen and (max-width: 840px) {
   .books {
     grid-template-columns: repeat(2, 1fr);
+    padding: 0 8vw;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .books {
+    padding: 0 3vw;
   }
 }
 

@@ -41,3 +41,18 @@
 .limitMessage {
   background-color: rgb(45, 22, 22);
 }
+
+@media screen and (max-width: 840px) {
+  .books {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 8vw;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .books {
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+
+    padding: 0 3vw;
+  }
+}
