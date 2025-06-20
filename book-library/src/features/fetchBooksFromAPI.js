@@ -26,12 +26,15 @@ export const fetchBooksFromAPI = async (
   let newBooks = [...buffer];
 
   while (newBooks.length < maxResult + 1 && attempts <= maxRequest) {
-    const res = await axios.get('http://localhost:5000/api/books', {
-      params: {
-        q: makeQuery(type, value),
-        currentIndex,
-      },
-    });
+    const res = await axios.get(
+      `${import.meta.env.VITE_API_BASE_URL}/api/books`,
+      {
+        params: {
+          q: makeQuery(type, value),
+          currentIndex,
+        },
+      }
+    );
 
     const data = res.data.items || [];
 
