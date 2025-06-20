@@ -18,7 +18,7 @@ function App() {
           element={<MyLibrary myLibraryNavigation={<MyLibraryNavigation />} />}
         ></Route>
         <Route path="catalog" element={<Catalog />} />
-        <Route path="*" element="not found" />
+        <Route path="*" element={<Catalog />} />
       </Routes>
       <ModalWrapper />
     </div>
