@@ -11,6 +11,7 @@
   border-radius: 5px;
   display: block;
   padding: 5px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .active {

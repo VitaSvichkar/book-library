@@ -1,5 +1,6 @@
 .link,
 .active {
+  -webkit-tap-highlight-color: transparent;
   transition: 0.2s ease padding;
 }
 
