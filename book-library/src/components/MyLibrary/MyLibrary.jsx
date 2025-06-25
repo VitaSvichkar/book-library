@@ -44,23 +44,25 @@ export function MyLibrary({ myLibraryNavigation }) {
     <div className={c.wrap}>
       {myLibraryNavigation}
       {filteredBooks.length > 0 ? (
-        <main className={c.main}>
-          <div className={c.wrapBooks}>
-            <div className={c.books}>
-              {filteredBooks.map((book, i) => {
-                return (
-                  <CardWrapper
-                    key={book.id}
-                    book={book}
-                    i={i}
-                    isMyLibrary={true}
-                    handleOpenModal={handleOpenModal}
-                  />
-                );
-              })}
+        <div className={c.wrapMain}>
+          <main className={c.main}>
+            <div className={c.wrapBooks}>
+              <div className={c.books}>
+                {filteredBooks.map((book, i) => {
+                  return (
+                    <CardWrapper
+                      key={book.id}
+                      book={book}
+                      i={i}
+                      isMyLibrary={true}
+                      handleOpenModal={handleOpenModal}
+                    />
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        </main>
+          </main>
+        </div>
       ) : (
         <div className={c.infoMessage}>
           `So quiet here... 🤫 Maybe it’s time to add your first book? 📚`

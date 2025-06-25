@@ -4,11 +4,19 @@
   grid-template-columns: 100px auto;
   padding: 0 10px;
   width: 100%;
+  height: 100%;
+}
+
+.wrapMain {
+  display: flex;
+  justify-content: center;
+  height: 100%;
 }
 
 .main {
   position: relative;
-  padding: 10px;
+  padding: 5px 20px;
+  width: fit-content;
 }
 
 .main:before {
@@ -27,7 +35,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-items: center;
-  gap: 10px;
+  gap: 20px;
+  width: fit-content;
 }
 
 .infoMessage {
@@ -37,29 +46,22 @@
   margin: auto 0;
 }
 
-@media screen and (max-width: 1230px) {
+@media screen and (max-width: 1242px) {
   .books {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 255px);
   }
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 978px) {
   .wrap {
     grid-template-columns: 1fr;
     gap: 30px;
   }
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 869px) {
   .books {
     grid-template-columns: repeat(2, 1fr);
-    padding: 0 8vw;
-  }
-}
-
-@media screen and (max-width: 680px) {
-  .books {
-    padding: 0 3vw;
   }
 }
 

@@ -1,7 +1,6 @@
 .main {
   position: relative;
-  padding: 10px;
-  width: 100%;
+  padding: 5px 20px;
 }
 
 .main:before {
@@ -22,10 +21,8 @@
 
 .books {
   display: grid;
-  width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  grid-template-columns: repeat(4, 255px);
   gap: 20px;
-  justify-items: center;
 }
 
 .infoMessage,
@@ -42,17 +39,20 @@
   background-color: rgb(45, 22, 22);
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 1135px) {
   .books {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0 8vw;
+    grid-template-columns: repeat(3, 255px);
   }
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 850px) {
   .books {
-    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    grid-template-columns: repeat(2, 255px);
+  }
+}
 
-    padding: 0 3vw;
+@media screen and (max-width: 572px) {
+  .books {
+    grid-template-columns: repeat(1, 255px);
   }
 }

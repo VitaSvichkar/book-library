@@ -10,7 +10,7 @@
   position: fixed;
   width: 100%;
   height: 100%;
-  background: url(../public/libraryBg.png) no-repeat;
+  background: url(../public/bg-library.png) no-repeat;
   background-position: top;
   background-size: cover;
 }
