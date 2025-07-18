@@ -1,6 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Book } from '../types/book';
+import { RootState } from '../app/store';
 
-const initialState = {
+export type FilterType = 'favorite' | 'read' | 'reading' | '';
+
+type InitValues = {
+  myBooks: Book[];
+  filter: FilterType;
+};
+
+const initialState: InitValues = {
   myBooks: [],
   filter: '',
 };
@@ -9,18 +18,21 @@ const myBooksSlices = createSlice({
   name: 'myBooks',
   initialState,
   reducers: {
-    addBook: (state, action) => {
+    addBook: (state, action: PayloadAction<Book>) => {
       return { ...state, myBooks: [...state.myBooks, action.payload] };
     },
 
-    removeBook: (state, action) => {
+    removeBook: (state, action: PayloadAction<Book['id']>) => {
       return {
         ...state,
         myBooks: state.myBooks.filter((book) => book.id !== action.payload),
       };
     },
 
-    setFinish: (state, action) => {
+    setFinish: (
+      state,
+      action: PayloadAction<{ id: Book['id']; value: boolean }>
+    ) => {
       return {
         ...state,
         myBooks: state.myBooks.map((book) => {
@@ -33,7 +45,7 @@ const myBooksSlices = createSlice({
       };
     },
 
-    setIsFavorite: (state, action) => {
+    setIsFavorite: (state, action: PayloadAction<Book['id']>) => {
       return {
         ...state,
         myBooks: state.myBooks.map((book) => {
@@ -46,11 +58,14 @@ const myBooksSlices = createSlice({
       };
     },
 
-    setFilterType: (state, action) => {
+    setFilterType: (state, action: PayloadAction<FilterType>) => {
       return { ...state, filter: action.payload };
     },
 
-    setReview: (state, action) => {
+    setReview: (
+      state,
+      action: PayloadAction<{ id: Book['id']; review: string }>
+    ) => {
       return {
         ...state,
         myBooks: state.myBooks.map((book) => {
@@ -63,7 +78,10 @@ const myBooksSlices = createSlice({
       };
     },
 
-    setGrade: (state, action) => {
+    setGrade: (
+      state,
+      action: PayloadAction<{ id: Book['id']; grade: number }>
+    ) => {
       return {
         ...state,
         myBooks: state.myBooks.map((book) => {
@@ -76,7 +94,10 @@ const myBooksSlices = createSlice({
       };
     },
 
-    toggleBookFinished: (state, action) => {
+    toggleBookFinished: (
+      state,
+      action: PayloadAction<{ id: Book['id']; pages: number; progress: number }>
+    ) => {
       return {
         ...state,
         myBooks: state.myBooks.map((book) => {
@@ -120,12 +141,12 @@ export const {
   setFilterType,
 } = myBooksSlices.actions;
 
-export function getMyBooks(state) {
+export const getMyBooks = (state: RootState): Book[] => {
   return state.myBooks.myBooks;
-}
+};
 
-export function getFilterType(state) {
+export const getFilterType = (state: RootState): InitValues['filter'] => {
   return state.myBooks.filter;
-}
+};
 
 export default myBooksSlices;

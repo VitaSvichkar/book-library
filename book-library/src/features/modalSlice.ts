@@ -1,6 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../app/store';
+import { Book } from './../types/book';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+type ModalTypes = 'CATALOG' | 'LIBRARY';
+
+type InitValues = {
+  modal: {
+    type: ModalTypes | null;
+    selectedBook: Book | null;
+  };
+};
+
+const initialState: InitValues = {
   modal: {
     type: null,
     selectedBook: null,
@@ -11,7 +22,10 @@ const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openModal: (state, action) => {
+    openModal: (
+      state,
+      action: PayloadAction<{ type: ModalTypes; book: Book }>
+    ) => {
       return {
         ...state,
         modal: {
@@ -36,7 +50,9 @@ const modalSlice = createSlice({
 });
 
 export const { openModal, closeModal } = modalSlice.actions;
-export function getStateModal(state) {
+
+export const getStateModal = (state: RootState) => {
   return state.modal.modal;
-}
+};
+
 export default modalSlice;

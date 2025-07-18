@@ -1,34 +1,41 @@
 import c from './cards.module.css';
-import React, { useCallback } from 'react';
+import React, { useCallback, FC } from 'react';
 import { useDispatch } from 'react-redux';
+import { setIsAdded } from '../../features/booksSlice';
+import { setKeyword, setTypeQuery } from '../../features/searchSlice';
+import { fetchBooks } from '../../features/fetchBooks';
+import { LibraryCard } from './LibraryCard/LibraryCard';
+import { CatalogCard } from './CatalogCard/CatalogCard';
+import { CardProps, CardWrapperProps, Classes } from '../../types/cards';
 import {
   addBook,
   removeBook,
   setFinish,
   setIsFavorite,
 } from '../../features/myBooksSlice';
-import { setIsAdded } from '../../features/booksSlice';
-import { setKeyword, setTypeQuery } from '../../features/searchSlice';
-import { fetchBooks } from '../../features/fetchBooks';
-import { LibraryCard } from './LibraryCard/LibraryCard';
-import { CatalogCard } from './CatalogCard/CatalogCard';
+import { QueryTypes } from '../../types/searchSlice';
+import { AppDispatch } from '../../app/store';
 
-export const CardWrapper = React.memo(
+export const CardWrapper: FC<CardWrapperProps> = React.memo(
   ({ book, handleOpenModal, isMyLibrary, limitBooks, setIsLoading }) => {
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
 
-    const title = book.volumeInfo.title.toLowerCase();
-    const category = book.volumeInfo.categories
+    const title: string = book.volumeInfo.title.toLowerCase();
+
+    const category: string = book.volumeInfo.categories
       ?.slice(0, 1)
       .join()
       .toLowerCase();
-    const author = book.volumeInfo.authors?.slice(0, 1).join().toLowerCase();
-    const bookCover = book.volumeInfo.imageLinks.thumbnail.replace(
+    const author: string = book.volumeInfo.authors
+      ?.slice(0, 1)
+      .join()
+      .toLowerCase();
+    const bookCover: string = book.volumeInfo.imageLinks.thumbnail.replace(
       /^http:\/\//i,
       'https://'
     );
 
-    const classes = {
+    const classes: Classes = {
       authorLink: c.authorLink,
       categories: c.categories,
       wrapLabel: c.wrapLabel,
@@ -37,15 +44,19 @@ export const CardWrapper = React.memo(
     };
 
     const handleSearchTags = useCallback(
-      async (e, el, type) => {
+      async (
+        e: React.MouseEvent,
+        keyWord: string,
+        type: QueryTypes
+      ): Promise<void> => {
         e.preventDefault();
-        setIsLoading(true);
+        setIsLoading!(true);
 
         try {
           dispatch(setTypeQuery(type));
-          dispatch(setKeyword(el));
-          await dispatch(fetchBooks(el, type));
-          setIsLoading(false);
+          dispatch(setKeyword(keyWord));
+          await dispatch(fetchBooks(keyWord, type));
+          setIsLoading!(false);
         } catch (error) {
           console.log(error);
         }
@@ -77,7 +88,7 @@ export const CardWrapper = React.memo(
       dispatch(setIsAdded(book.id));
     }, [dispatch, book.id]);
 
-    const props = {
+    const props: CardProps = {
       handleDeleteBook,
       handleToggleFinish,
       handleToggleFavorite,

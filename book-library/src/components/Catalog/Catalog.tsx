@@ -7,23 +7,25 @@ import { loadMoreBooks } from '../../features/loadMoreBooks';
 import { Loading } from '../ui/Loading/Loading';
 import { Search } from '../Search/Search';
 import { useCallback, useState } from 'react';
-import LoadMoreButton from '../LoadMoreButton/LoadMoreButton';
 import { openModal } from '../../features/modalSlice';
-import { getMyBooks } from '../../features/myBooksSlice';
 import { checkIgnoreModalClick } from '../../utils/checkIgnoreModalClick';
+import { getMyBooks } from '../../features/myBooksSlice';
+import { AppDispatch, RootState } from '../../app/store';
+import { Book } from '../../types/book';
+import { Classes } from '../../types/cards';
+import { LoadMoreButton } from '../LoadMoreButton/LoadMoreButton';
 
 export function Catalog() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isRequest, setIsRequest] = useState(false);
-
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isRequest, setIsRequest] = useState<boolean>(false);
   const { books, buffer } = useSelector(getBooksState);
   const keyword = useSelector(getKeyword);
   const myBooks = useSelector(getMyBooks);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const limitBooks = myBooks.length >= 50;
 
   const handleOpenModal = useCallback(
-    (e, book, c) => {
+    (e: React.MouseEvent, book: Book, c: Classes) => {
       if (checkIgnoreModalClick(e, c)) {
         dispatch(openModal({ type: 'CATALOG', book: book }));
       }
@@ -31,7 +33,7 @@ export function Catalog() {
     [dispatch]
   );
 
-  const handleLoadData = useCallback(async () => {
+  const handleLoadData = useCallback(async (): Promise<void> => {
     setIsLoading(true);
     await dispatch(loadMoreBooks(keyword));
     setIsLoading(false);

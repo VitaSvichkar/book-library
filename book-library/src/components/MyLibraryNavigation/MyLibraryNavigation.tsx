@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import c from './myLibraryNavigation.module.css';
-import { getFilterType } from '../../features/myBooksSlice';
+import { FilterType, getFilterType } from '../../features/myBooksSlice';
 import { useSelector } from 'react-redux';
 
 export function MyLibraryNavigation() {
   const filter = useSelector(getFilterType);
 
-  const navigationLinks = [
+  const navigationLinks: { title: string; query?: FilterType }[] = [
     {
       title: 'All books',
     },
@@ -24,7 +24,7 @@ export function MyLibraryNavigation() {
     },
   ];
 
-  function getLinkClass(query) {
+  function getLinkClass(query: FilterType | undefined) {
     const isActive = query ? query === filter : !filter;
     return isActive ? c.active : c.link;
   }
@@ -35,7 +35,7 @@ export function MyLibraryNavigation() {
         {navigationLinks.map((el, i) => (
           <li key={i}>
             <NavLink
-              className={getLinkClass(el?.query)}
+              className={getLinkClass(el.query)}
               to={el?.query ? `?filter=${el?.query}` : '/'}
             >
               {el?.title}

@@ -1,9 +1,10 @@
 import c from '../cards.module.css';
-import React from 'react';
+import React, { FC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { CardProps } from '../../../types/cards';
 
-export const CatalogCard = React.memo((props) => {
+export const CatalogCard: FC<CardProps> = React.memo((props) => {
   return (
     <div className={c.cardInfo}>
       <div className={c.bookCover}>
@@ -36,8 +37,8 @@ export const CatalogCard = React.memo((props) => {
 
         <div className={c.wrapBtn}>
           <button
-            disabled={props.limitBooks && !props.book.isAdded}
-            onClick={() => props.handleToggleAddBook(props.book)}
+            disabled={!!props.limitBooks && !props.book.isAdded}
+            onClick={() => props.handleToggleAddBook()}
             className={`${c.btn} ${props.book.isAdded ? c.btnAdded : c.btnAdd}`}
           >
             <FontAwesomeIcon icon={props.book.isAdded ? faCheck : faPlus} />

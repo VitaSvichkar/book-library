@@ -5,8 +5,9 @@ import { MyLibrary } from './components/MyLibrary/MyLibrary';
 import { Navigation } from './components/Navigation/Navigation';
 import { MyLibraryNavigation } from './components/MyLibraryNavigation/MyLibraryNavigation';
 import { ModalWrapper } from './components/Modal/ModalWrapper';
+import { FC } from 'react';
 
-function App() {
+const App: FC = () => {
   return (
     <div className="wrap">
       <header>
@@ -23,6 +24,6 @@ function App() {
       <ModalWrapper />
     </div>
   );
-}
+};
 
 export default App;

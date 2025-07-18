@@ -4,7 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import booksSlice from '../features/booksSlice';
 import modalSlice from '../features/modalSlice';
 import searchSlice from '../features/searchSlice';
-import myBooksSlices from '../features/myBooksSlice';
+import myBooksSlices from '../features/myBooksSlice.ts';
 
 const rootReducer = combineReducers({
   books: booksSlice.reducer,
@@ -25,8 +25,11 @@ const store = configureStore({
   reducer: persistedReducer,
 });
 
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
 const persistor = persistStore(store);
 
 export { store, persistor };
-window.store = store;
-export default store;
+// window.store = store;
+// export default store;

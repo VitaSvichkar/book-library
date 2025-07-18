@@ -1,6 +1,7 @@
+import { VolumeInfo } from '../../types/book';
 import c from './modal.module.css';
 
-export function BookData({ book }) {
+export function BookData({ book }: { book: VolumeInfo }) {
   const bookCover = book.imageLinks.thumbnail.replace(
     /^http:\/\//i,
     'https://'

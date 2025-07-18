@@ -1,25 +1,32 @@
 import c from '../ui.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setGrade } from '../../../features/myBooksSlice';
+import { Book } from '../../../types/book';
+import { AppDispatch } from '../../../app/store';
 
-export const Grade = React.memo(({ grade, id }) => {
-  const dispatch = useDispatch();
-  const [hovered, setHovered] = useState(Array(5).fill(0));
+type GradeProps = {
+  grade: Book['grade'];
+  id: Book['id'];
+};
 
-  const [stars, setStars] = useState(
+export const Grade: FC<GradeProps> = React.memo(({ grade, id }) => {
+  const dispatch: AppDispatch = useDispatch();
+  const [hovered, setHovered] = useState<(0 | 1)[]>(Array(5).fill(0));
+
+  const [stars, setStars] = useState<(0 | 1)[]>(
     Array(5)
       .fill(0)
       .map((_, i) => (i < grade ? 1 : 0))
   );
 
-  function handleHoverStars(i) {
+  function handleHoverStars(i: number) {
     setHovered((prev) => prev.map((_, ind) => (ind <= i ? 1 : 0)));
   }
 
-  function handleSetGrade(ind) {
+  function handleSetGrade(ind: number) {
     setStars((prev) =>
       prev.map((el, i) => {
         if (ind === 0 && prev[ind] === 1 && prev[ind + 1] === 0) {
@@ -33,14 +40,15 @@ export const Grade = React.memo(({ grade, id }) => {
     dispatch(setGrade({ id, grade: ind + 1 }));
   }
 
-  const arr = hovered[0] ? hovered : stars;
+  const arr: number[] = hovered[0] ? hovered : stars;
+
   return (
     <div className={c.wrap}>
       {arr.map((el, i) => {
         return (
           <span
             onMouseOver={() => handleHoverStars(i)}
-            onMouseLeave={() => setHovered(Array(5).fill(null))}
+            onMouseLeave={() => setHovered(Array(5).fill(0))}
             onClick={() => handleSetGrade(i)}
             className={!el ? '' : c.starIco}
             key={i}

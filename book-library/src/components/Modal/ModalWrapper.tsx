@@ -3,21 +3,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ModalCatalog } from './ModalCatalog';
 import { ModalMyLibrary } from './ModalMyLibrary';
 import { useEffect } from 'react';
+import { AppDispatch } from '../../app/store';
+import { ModalProps } from '../../types/modalProps';
 
 export function ModalWrapper() {
   const modal = useSelector(getStateModal);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
-  function handleCloseModal(e) {
+  const handleCloseModal: ModalProps['handleCloseModal'] = (e) => {
     if (e.target !== e.currentTarget) {
       return;
     }
-
     dispatch(closeModal());
-  }
+  };
 
   useEffect(() => {
-    const scrollWidth =
+    const scrollWidth: number =
       window.innerWidth - document.documentElement.clientWidth;
     if (modal.type) {
       document.body.style.overflow = 'hidden';

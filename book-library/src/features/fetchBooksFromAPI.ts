@@ -1,6 +1,14 @@
 import axios from 'axios';
+import { QueryTypes } from '../types/searchSlice';
+import { Book, VolumeInfo } from '../types/book';
 
-function makeQuery(type, value) {
+type Response = {
+  booksToShow: Book[];
+  bufferLeft: Book[];
+  nextIndex: number;
+};
+
+function makeQuery(type: QueryTypes, value: string): string {
   switch (type) {
     case 'author':
       return `inauthor:"${value}"`;
@@ -14,16 +22,16 @@ function makeQuery(type, value) {
 }
 
 export const fetchBooksFromAPI = async (
-  value,
-  type,
-  index = 0,
-  buffer = [],
-  maxResult,
-  maxRequest = 5
-) => {
-  let attempts = 0;
-  let currentIndex = index;
-  let newBooks = [...buffer];
+  value: string,
+  type: QueryTypes,
+  index: number = 0,
+  buffer: Book[] = [],
+  maxResult: number,
+  maxRequest: number = 5
+): Promise<Response> => {
+  let attempts: number = 0;
+  let currentIndex: number = index;
+  let newBooks: Book[] = [...buffer];
 
   while (newBooks.length < maxResult + 1 && attempts <= maxRequest) {
     const res = await axios.get(
@@ -36,11 +44,13 @@ export const fetchBooksFromAPI = async (
       }
     );
 
-    const data = res.data.items || [];
+    const data = res.data.items;
 
-    const filteredData = data.filter((el) => {
+    if (!Array.isArray(data)) break;
+
+    const filteredData: Book[] = data.filter((el) => {
       const isDuplicate = newBooks.some((book) => book.id === el.id);
-      const { imageLinks, description, pageCount } = el.volumeInfo || {};
+      const { imageLinks, description, pageCount }: VolumeInfo = el.volumeInfo;
 
       return (
         imageLinks &&
@@ -51,7 +61,7 @@ export const fetchBooksFromAPI = async (
       );
     });
 
-    const extendedBooks = filteredData.map((book) => ({
+    const extendedBooks: Book[] = filteredData.map((book) => ({
       ...book,
       isAdded: false,
       isFinished: false,
@@ -66,9 +76,7 @@ export const fetchBooksFromAPI = async (
     currentIndex += maxResult;
     attempts += 1;
 
-    if (data.length === 0) {
-      break;
-    }
+    if (data.length === 0) break;
   }
 
   return {

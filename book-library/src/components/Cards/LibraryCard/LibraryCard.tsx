@@ -1,5 +1,5 @@
 import c from '../cards.module.css';
-import React from 'react';
+import React, { FC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTrash,
@@ -10,11 +10,13 @@ import {
 import { ProgressBar } from '../../ui/ProgressBar/ProgressBar';
 import { Badge } from '../../ui/Badge/Badge';
 import { Grade } from '../../ui/Grade/Grade';
+import { CardProps } from '../../../types/cards';
+import { Book, StatusValues } from '../../../types/book';
 
-export const LibraryCard = React.memo((props) => {
-  const status = getStatusClass(props.book.status);
+export const LibraryCard: FC<CardProps> = React.memo((props) => {
+  const status: Book['status'] = getStatusClass(props.book.status);
 
-  function getStatusClass(status) {
+  function getStatusClass(status: StatusValues): StatusValues {
     return status === 'reading' || status === 'completed' ? status : '';
   }
 
@@ -60,7 +62,7 @@ export const LibraryCard = React.memo((props) => {
 
           <div className={c.wrapBtn}>
             <button
-              onClick={() => props.handleToggleFinish(props.book)}
+              onClick={() => props.handleToggleFinish()}
               className={`${c.btn} ${
                 props.book.isFinished ? c.btnFinished : c.btnFinish
               }`}

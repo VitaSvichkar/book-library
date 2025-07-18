@@ -1,24 +1,27 @@
 import c from './modal.module.css';
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { setReview } from '../../features/myBooksSlice';
 import { BookData } from './BookData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { ModalProps } from '../../types/modalProps';
+import { AppDispatch } from '../../app/store';
 
-export function ModalMyLibrary({ book, handleCloseModal }) {
-  const [myReview, setMyReview] = useState(book.review);
-  const dispatch = useDispatch();
-  const [isSaved, setIsSaved] = useState(null);
+export const ModalMyLibrary: FC<ModalProps> = ({ book, handleCloseModal }) => {
+  const [myReview, setMyReview] = useState<string>(book!.review);
+  const dispatch: AppDispatch = useDispatch();
+  const [isSaved, setIsSaved] = useState<boolean>(false);
 
-  function handleSaveReview(e) {
+  const handleSaveReview = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSaved(dispatch(setReview({ id: book.id, review: myReview })));
-  }
+    dispatch(setReview({ id: book!.id, review: myReview }));
+    setIsSaved(true);
+  };
 
-  function handleSetReview(e) {
+  function handleSetReview(e: React.ChangeEvent<HTMLTextAreaElement>) {
     if (isSaved) {
-      setIsSaved(null);
+      setIsSaved(false);
     }
 
     setMyReview(e.target.value);
@@ -27,7 +30,7 @@ export function ModalMyLibrary({ book, handleCloseModal }) {
   return (
     <div className={c.overlay} onClick={(e) => handleCloseModal(e)}>
       <article className={c.modal}>
-        <BookData book={book.volumeInfo} />
+        <BookData book={book!.volumeInfo} />
 
         <section>
           <h2>Review</h2>
@@ -52,4 +55,4 @@ export function ModalMyLibrary({ book, handleCloseModal }) {
       </article>
     </div>
   );
-}
+};

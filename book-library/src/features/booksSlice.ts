@@ -1,6 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../app/store';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Book } from '../types/book';
+import { InitValuesBooks } from '../types/booksSlice';
 
-const initialState = {
+const initialState: InitValuesBooks = {
   books: [],
   maxResult: 12,
   startIndex: 0,
@@ -11,7 +14,7 @@ const booksSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {
-    setBooks: (state, action) => {
+    setBooks: (state, action: PayloadAction<Book[]>) => {
       return { ...state, books: [...state.books, ...action.payload] };
     },
 
@@ -19,7 +22,7 @@ const booksSlice = createSlice({
       return { ...state, books: [] };
     },
 
-    setIsAdded: (state, action) => {
+    setIsAdded: (state, action: PayloadAction<string>) => {
       return {
         ...state,
         books: state.books.map((book) => {
@@ -32,11 +35,11 @@ const booksSlice = createSlice({
       };
     },
 
-    setStartIndex: (state, action) => {
+    setStartIndex: (state, action: PayloadAction<number>) => {
       return { ...state, startIndex: action.payload };
     },
 
-    setBuffer: (state, action) => {
+    setBuffer: (state, action: PayloadAction<Book[]>) => {
       return { ...state, buffer: [...action.payload] };
     },
   },
@@ -45,8 +48,8 @@ const booksSlice = createSlice({
 export const { setBooks, clearBooks, setStartIndex, setBuffer, setIsAdded } =
   booksSlice.actions;
 
-export function getBooksState(state) {
+export const getBooksState = (state: RootState): RootState['books'] => {
   return state.books;
-}
+};
 
 export default booksSlice;
