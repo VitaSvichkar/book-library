@@ -48,7 +48,7 @@ export const MyLibrary: FC<MyLibraryProps> = ({ myLibraryNavigation }) => {
       filter === 'favorite' ||
       filter === 'reading' ||
       filter === 'read' ||
-      filter === ''
+      filter === 'all'
     ) {
       dispatch(setFilterType(filter));
     }
