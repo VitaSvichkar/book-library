@@ -1,5 +1,9 @@
 # Book-Library
 
+<img width="1884" height="875" alt="Снимок экрана 2025-09-02 235535" src="https://github.com/user-attachments/assets/e2568620-2289-4164-8f7f-85b3f3698956" />
+<img width="1778" height="899" alt="Снимок экрана 2025-09-03 010600" src="https://github.com/user-attachments/assets/265a8c4c-2b9d-4fcd-8773-13b1c58eec51" />
+
+
 **Book Library** is a React-based web application that allows users to browse books from the Google Books API, add them to a personal library, track reading progress, rate books, and write custom reviews.
 
 ## Live Demo
