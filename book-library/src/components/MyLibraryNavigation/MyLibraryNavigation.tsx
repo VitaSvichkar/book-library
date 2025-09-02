@@ -9,6 +9,7 @@ export function MyLibraryNavigation() {
   const navigationLinks: { title: string; query?: FilterType }[] = [
     {
       title: 'All books',
+      query: 'all',
     },
     {
       title: 'My Favorites',
@@ -25,8 +26,7 @@ export function MyLibraryNavigation() {
   ];
 
   function getLinkClass(query: FilterType | undefined) {
-    const isActive = query ? query === filter : !filter;
-    return isActive ? c.active : c.link;
+    return query === filter ? c.active : c.link;
   }
 
   return (
@@ -36,7 +36,8 @@ export function MyLibraryNavigation() {
           <li key={i}>
             <NavLink
               className={getLinkClass(el.query)}
-              to={el?.query ? `?filter=${el?.query}` : '/'}
+              // to={el?.query ? `?filter=${el?.query}` : '/'}
+              to={`?filter=${el.query}`}
             >
               {el?.title}
             </NavLink>

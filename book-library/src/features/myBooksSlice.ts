@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Book } from '../types/book';
 import { RootState } from '../app/store';
 
-export type FilterType = 'favorite' | 'read' | 'reading' | '';
+export type FilterType = 'favorite' | 'read' | 'reading' | 'all';
 
 type InitValues = {
   myBooks: Book[];
@@ -11,7 +11,7 @@ type InitValues = {
 
 const initialState: InitValues = {
   myBooks: [],
-  filter: '',
+  filter: 'all',
 };
 
 const myBooksSlices = createSlice({
